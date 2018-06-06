@@ -3,153 +3,213 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-  <title>Heroic Features - Start Bootstrap Template</title>
+	<title>Heroic Features - Start Bootstrap Template</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap core CSS -->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="css/heroic-features.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="css/heroic-features.css" rel="stylesheet">
+
+	<!-- Custom js -->
+	<script language="javascript" src="vendor/jquery/jquery.min.js"></script>
+	<script language="javascript" src="js/index.js"></script>
 
 </head>
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">Start Bootstrap</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			    aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto" id="navbarlogin">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Đăng kí</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
+					</li>
+				</ul>
+				<ul class="d-none navbar-nav ml-auto" id="navbaruser">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Giỏ hàng</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Đấu giá của tôi</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsername" role="button" data-toggle="dropdown" aria-haspopup="true"
+						    aria-expanded="false">
+							Dropdown
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Action 1</a>
+							<a class="dropdown-item" href="#">Action 2</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" id="btnExit" href="#">Đăng xuất</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-  <!-- Page Content -->
-  <div class="container">
+	<!-- Page Content -->
+	<div class="container">
 
-    <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-      <h1 class="display-3">A Warm Welcome!</h1>
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt
-        odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-      <a href="#" class="btn btn-primary btn-lg">Call to action!</a>
-    </header>
+		<!-- Jumbotron Header -->
+		<header class="jumbotron my-4">
+			<h1 class="display-3">A Warm Welcome!</h1>
+			<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit
+				vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+			<a href="#" class="btn btn-primary btn-lg">Call to action!</a>
+		</header>
 
-    <!-- Page Features -->
-    
-      <h3 class="future">FEAUTURES</h3>
+		<!-- Page Features -->
 
-      <div class="row text-center">
+		<h3 class="future">FEAUTURES</h3>
 
-        <div class="col-lg-2 col-md-6 mb-6">
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Find Out More!</a>
-            </div>
-          </div>
-        </div>
+		<div class="row text-center">
 
-        <div class="col-lg-2 col-md-6 mb-6">
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Find Out More!</a>
-            </div>
-          </div>
-        </div>
+			<div class="col-lg-2 col-md-6 mb-6">
+				<div class="card">
+					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<div class="card-body">
+						<h4 class="card-title">Card title</h4>
+						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="btn btn-primary">Find Out More!</a>
+					</div>
+				</div>
+			</div>
 
-        <div class="col-lg-2 col-md-6 mb-6">
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae
-                culpa natus architecto.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Find Out More!</a>
-            </div>
-          </div>
-        </div>
+			<div class="col-lg-2 col-md-6 mb-6">
+				<div class="card">
+					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<div class="card-body">
+						<h4 class="card-title">Card title</h4>
+						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="btn btn-primary">Find Out More!</a>
+					</div>
+				</div>
+			</div>
 
-        <div class="col-lg-2 col-md-6 mb-6">
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Find Out More!</a>
-            </div>
-          </div>
-        </div>
+			<div class="col-lg-2 col-md-6 mb-6">
+				<div class="card">
+					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<div class="card-body">
+						<h4 class="card-title">Card title</h4>
+						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus
+							architecto.</p>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="btn btn-primary">Find Out More!</a>
+					</div>
+				</div>
+			</div>
 
-        <div class="col-lg-2 col-md-6 mb-6">
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae
-                culpa natus architecto.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Find Out More!</a>
-            </div>
-          </div>
-        </div>
+			<div class="col-lg-2 col-md-6 mb-6">
+				<div class="card">
+					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<div class="card-body">
+						<h4 class="card-title">Card title</h4>
+						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="btn btn-primary">Find Out More!</a>
+					</div>
+				</div>
+			</div>
 
-      </div>
-      <!-- /.row -->
-   
-  </div>
-  <!-- /.container -->
+			<div class="col-lg-2 col-md-6 mb-6">
+				<div class="card">
+					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<div class="card-body">
+						<h4 class="card-title">Card title</h4>
+						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus
+							architecto.</p>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="btn btn-primary">Find Out More!</a>
+					</div>
+				</div>
+			</div>
 
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+		</div>
+		<!-- /.row -->
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- Footer -->
+		<footer class="py-5 bg-dark">
+			<div class="container">
+				<p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+			</div>
+			<!-- /.container -->
+		</footer>
+
+
+
+	</div>
+	<!-- /.container -->
+
+	<!-- Modal -->
+
+	<!-- Modal login -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="loginModalLabel">Đăng nhập</h5>
+					<button type="button" class="close" data-dismiss="modal" id="btncloseLogin" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group row">
+							<label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
+							<div class="col-sm-9">
+								<input type="email" class="form-control" id="loginEmail" onkeypress="return enterLogin(event)" value="" placeholder="Nhập email tài khoản">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputPassword" class="col-sm-3 col-form-label">Mật khẩu</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="loginPassword" onkeypress="return enterLogin(event)" placeholder="Nhập mật khẩu">
+							</div>
+						</div>
+					</form>
+					<div class="d-none alert alert-warning" role="alert" id="notificationNull">
+						Chưa nhập email hoặc mật khẩu.
+					</div>
+					<div class="d-none alert alert-danger" role="alert" id="notificationLogin">
+						Sai email hoặc mật khẩu. Vui lòng đăng nhập lại.
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal" id="btncloseLogin">Đóng</button>
+					<button type="submit" class="btn btn-primary" id="btnLogin">Đăng nhập</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
