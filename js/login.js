@@ -23,7 +23,7 @@ $(document).ready(function () {
 
 	$('#btnExit').on('click', function () {
 		cleanLocalStorage();
-		location.reload();
+		location.href = "../index.html";
 	});
 
 });
@@ -70,6 +70,7 @@ function Login() {
 			}).done(function (data) {
 				localStorage.isLogin = data.payload.isLogin;
 				if (localStorage.getItem('isLogin') === 'true') {
+					localStorage.userid = data.payload.userObj.userid;
 					localStorage.username = data.payload.userObj.username;
 					localStorage.address = data.payload.userObj.address;
 					showNavbarUser();
@@ -115,7 +116,6 @@ function showNavbar(check) {
 function showNavbarUser() {
 	$(navbarlogin).addClass('d-none');
 	$(navbaruser).removeClass('d-none');
-	console.log(localStorage.getItem('username'));
 	$(document.getElementById('navbarDropdownUsername')).text(localStorage.getItem('username'));
 }
 

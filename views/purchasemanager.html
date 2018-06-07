@@ -20,8 +20,10 @@
 	<link href="../css/heroic-features.css" rel="stylesheet">
 
 	<!-- Custom js -->
+	<script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 	<script language="javascript" src="../vendor/jquery/jquery.min.js"></script>
 	<script language="javascript" src="../js/login.js"></script>
+	<script language="javascript" src="../js/purchase.js"></script>
 
 </head>
 
@@ -93,7 +95,8 @@
 				</div>
 				<div class="col-lg-2">
 					<button type="submit" class="btn btn-primary col-mb-2 offset-lg-2">
-						<i class="fas fa-search"></i>&nbsp;&nbsp;Tìm kiếm&nbsp;</button>
+						<i class="fas fa-search"></i>&nbsp;&nbsp;Tìm kiếm&nbsp;
+					</button>
 				</div>
 			</div>
 		</form>
@@ -116,8 +119,8 @@
 		<div class="row">
 			<div class="col-3">
 				<div class="list-group" id="list-tab" role="tablist">
-					<a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab"
-					    aria-controls="home">
+					<a class="list-group-item list-group-item-action active" id="list-likeproduct-list" data-toggle="list" href="#list-likeproduct"
+					    role="tab" aria-controls="likeproduct">
 						Sản phẩm yêu thích
 					</a>
 					<a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab"
@@ -140,7 +143,34 @@
 			</div>
 			<div class="col-9">
 				<div class="tab-content" id="nav-tabContent">
-					<div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">...</div>
+					<div class="tab-pane fade show active" id="list-likeproduct" role="tabpanel" aria-labelledby="list-likeproduct-list">
+						<form>
+							<div class="form-row">
+								<div class="col col-md-3"></div>
+								<div class="col col-md-6 offset-md-2">
+									<input type="text" class="form-control" placeholder="Nhập tên sản phẩm yêu thích cần tìm">
+								</div>
+								<div class="col col-md">
+									<button type="submit" class="btn btn-primary">
+										<i class="fas fa-search"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+						<br>
+
+						<table class="table" id="likeProductTable">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col"></th>
+									<th style="min-width: 400px;" scope="col"><center>Tên sản phẩm</center></th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>								
+							</tbody>
+						</table>
+					</div>
 					<div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
 					<div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
 					<div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
