@@ -22,7 +22,7 @@
 	<!-- Custom js -->
 	<script language="javascript" src="../vendor/jquery/jquery.min.js"></script>
 	<script language="javascript" src="../js/login.js"></script>
-
+	<script language="javascript" src="../js/category.js"></script>
 </head>
 
 <body>
@@ -78,13 +78,11 @@
 			<div class="row">
 				<div class="col-lg-2">
 					<div class="btn-group">
-						<button type="button" class="btn btn-success col-mb-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<button type="button" class="btn btn-success col-mb-2 dropdown-toggle" id="btnLoadCategory" data-toggle="dropdown" aria-haspopup="true"
+						    aria-expanded="false">
 							<i class="fas fa-list-ul"></i>&nbsp;&nbsp;Danh mục&nbsp;
 						</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<a class="dropdown-item" href="#">Something else here</a>
+						<div class="dropdown-menu" id="listCategory">
 						</div>
 					</div>
 				</div>
@@ -161,156 +159,142 @@
 		</nav>
 		<br>
 
-		<div class="row text-center">
-
-			<div class="col-xs-6 col-sm-3 col-lg-2">
+		<div class="row text-muted">
+			<div class="col-lg-3 col-md-6 mb-4">
 				<div class="card">
-					<img class="card-img-top" src="./images/1.jpg" alt="">
+					<img class="card-img-top" src="../img/laroche.jpg" alt="">
 					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
+						<h4 class="card-title text-center">Laroche Posay</h4>
+						<div class="infor">
+							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
+							<span class="timeout" style="text-align: right">10:00:00</span>
+						</div>
+						<div class="card-footer">
+							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-xs-6 col-sm-4 col-lg-2">
+			<div class="col-lg-3 col-md-6 mb-4">
 				<div class="card">
-					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<img class="card-img-top" src="../img/laroche.jpg" alt="">
 					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
+						<h4 class="card-title text-center">Laroche Posay</h4>
+						<div class="infor">
+							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
+							<span class="timeout" style="text-align: right">10:00:00</span>
+						</div>
+						<div class="card-footer">
+							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-xs-6 col-sm-4 col-lg-2">
+			<div class="col-lg-3 col-md-6 mb-4">
 				<div class="card">
-					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<img class="card-img-top" src="../img/laroche.jpg" alt="">
 					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus
-							architecto.
-						</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
+						<h4 class="card-title text-center">Laroche Posay</h4>
+						<div class="infor">
+							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
+							<span class="timeout" style="text-align: right">10:00:00</span>
+						</div>
+						<div class="card-footer">
+							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-xs-6 col-sm-4 col-lg-2">
+			<div class="col-lg-3 col-md-6 mb-4">
 				<div class="card">
-					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<img class="card-img-top" src="../img/laroche.jpg" alt="">
 					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
+						<h4 class="card-title text-center">Laroche Posay</h4>
+						<div class="infor">
+							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
+							<span class="timeout" style="text-align: right">10:00:00</span>
+						</div>
+						<div class="card-footer">
+							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
+						</div>
 					</div>
 				</div>
 			</div>
-
-			<div class="col-xs-6 col-sm-4 col-lg-2">
-				<div class="card">
-					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
-					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus
-							architecto.
-						</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
-					</div>
-				</div>
-			</div>
-
 		</div>
-
 		<br>
+
 		<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
 			<h3 class="future">BEST PRICE</h3>
 		</nav>
 		<br>
 
-		<div class="row text-center">
-
-			<div class="col-lg-2 col-md-6 mb-6">
+		<div class="row text-muted">
+			<div class="col-lg-3 col-md-6 mb-4">
 				<div class="card">
-					<img class="card-img-top" src="./images/1.jpg" alt="">
+					<img class="card-img-top" src="../img/laroche.jpg" alt="">
 					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
+						<h4 class="card-title text-center">Laroche Posay</h4>
+						<div class="infor">
+							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
+							<span class="timeout" style="text-align: right">10:00:00</span>
+						</div>
+						<div class="card-footer">
+							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-lg-2 col-md-6 mb-6">
+			<div class="col-lg-3 col-md-6 mb-4">
 				<div class="card">
-					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<img class="card-img-top" src="../img/laroche.jpg" alt="">
 					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
+						<h4 class="card-title text-center">Laroche Posay</h4>
+						<div class="infor">
+							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
+							<span class="timeout" style="text-align: right">10:00:00</span>
+						</div>
+						<div class="card-footer">
+							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-lg-2 col-md-6 mb-6">
+			<div class="col-lg-3 col-md-6 mb-4">
 				<div class="card">
-					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<img class="card-img-top" src="../img/laroche.jpg" alt="">
 					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus
-							architecto.
-						</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
+						<h4 class="card-title text-center">Laroche Posay</h4>
+						<div class="infor">
+							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
+							<span class="timeout" style="text-align: right">10:00:00</span>
+						</div>
+						<div class="card-footer">
+							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-lg-2 col-md-6 mb-6">
+			<div class="col-lg-3 col-md-6 mb-4">
 				<div class="card">
-					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<img class="card-img-top" src="../img/laroche.jpg" alt="">
 					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
+						<h4 class="card-title text-center">Laroche Posay</h4>
+						<div class="infor">
+							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
+							<span class="timeout" style="text-align: right">10:00:00</span>
+						</div>
+						<div class="card-footer">
+							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
+						</div>
 					</div>
 				</div>
 			</div>
-
-			<div class="col-lg-2 col-md-6 mb-6">
-				<div class="card">
-					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
-					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus
-							architecto.
-						</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
-					</div>
-				</div>
-			</div>
-
 		</div>
 
 		<br>
@@ -319,77 +303,71 @@
 		</nav>
 		<br>
 
-		<div class="row text-center">
+		<div class="row text-muted">
 
-			<div class="col-lg-2 col-md-6 mb-6">
+			<div class="col-lg-3 col-md-6 mb-4">
 				<div class="card">
-					<img class="card-img-top" src="./images/1.jpg" alt="">
+					<img class="card-img-top" src="../img/laroche.jpg" alt="">
 					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
+						<h4 class="card-title text-center">Laroche Posay</h4>
+						<div class="infor">
+							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
+							<span class="timeout" style="text-align: right">10:00:00</span>
+						</div>
+						<div class="card-footer">
+							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-lg-2 col-md-6 mb-6">
+			<div class="col-lg-3 col-md-6 mb-4">
 				<div class="card">
-					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<img class="card-img-top" src="../img/laroche.jpg" alt="">
 					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
+						<h4 class="card-title text-center">Laroche Posay</h4>
+						<div class="infor">
+							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
+							<span class="timeout" style="text-align: right">10:00:00</span>
+						</div>
+						<div class="card-footer">
+							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-lg-2 col-md-6 mb-6">
+			<div class="col-lg-3 col-md-6 mb-4">
 				<div class="card">
-					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<img class="card-img-top" src="../img/laroche.jpg" alt="">
 					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus
-							architecto.
-						</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
+						<h4 class="card-title text-center">Laroche Posay</h4>
+						<div class="infor">
+							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
+							<span class="timeout" style="text-align: right">10:00:00</span>
+						</div>
+						<div class="card-footer">
+							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-lg-2 col-md-6 mb-6">
+			<div class="col-lg-3 col-md-6 mb-4">
 				<div class="card">
-					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+					<img class="card-img-top" src="../img/laroche.jpg" alt="">
 					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
+						<h4 class="card-title text-center">Laroche Posay</h4>
+						<div class="infor">
+							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
+							<span class="timeout" style="text-align: right">10:00:00</span>
+						</div>
+						<div class="card-footer">
+							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
+						</div>
 					</div>
 				</div>
 			</div>
-
-			<div class="col-lg-2 col-md-6 mb-6">
-				<div class="card">
-					<img class="card-img-top" src="http://placehold.it/500x325" alt="">
-					<div class="card-body">
-						<h4 class="card-title">Card title</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus
-							architecto.
-						</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">Find Out More!</a>
-					</div>
-				</div>
-			</div>
-
 		</div>
 		<!-- /.row -->
 
