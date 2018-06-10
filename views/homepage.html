@@ -20,7 +20,9 @@
 	<link href="../css/heroic-features.css" rel="stylesheet">
 
 	<!-- Custom js -->
+	<script language="javascript" src="../vendor/socket.io/socket.io.js"></script>
 	<script language="javascript" src="../vendor/jquery/jquery.min.js"></script>
+	<script language="javascript" src="../js/jwt.js"></script>
 	<script language="javascript" src="../js/login.js"></script>
 	<script language="javascript" src="../js/category.js"></script>
 </head>
@@ -119,21 +121,21 @@
 			<!-- The slideshow -->
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="img/ny.jpg" alt="Los Angeles">
+					<img src="../img/ny.jpg" alt="Los Angeles">
 					<div class="carousel-caption">
 						<h3>Los Angeles</h3>
 						<p>We had such a great time in LA!</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="img/ny.jpg" alt="Chicago">
+					<img src="../img/ny.jpg" alt="Chicago">
 					<div class="carousel-caption">
 						<h3>Los Angeles</h3>
 						<p>We had such a great time in LA!</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="img/ny.jpg" alt="New York">
+					<img src="../img/ny.jpg" alt="New York">
 					<div class="carousel-caption">
 						<h3>Los Angeles</h3>
 						<p>We had such a great time in LA!</p>
@@ -412,6 +414,9 @@
 							</div>
 						</div>
 					</form>
+					<div class="d-none alert alert-danger" role="alert" id="notificationLogined">
+						Tài khoản đã đăng nhập ở nơi khác
+					</div>
 					<div class="d-none alert alert-warning" role="alert" id="notificationNull">
 						Chưa nhập email hoặc mật khẩu.
 					</div>

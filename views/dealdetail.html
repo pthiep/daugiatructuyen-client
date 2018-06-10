@@ -108,7 +108,7 @@
 				<li class="breadcrumb-item">
 					<a href="../index.html">Trang chủ</a>
 				</li>
-				<li class="breadcrumb-item active" aria-current="page">Chi tiết sản phẩm</li>
+				<li class="breadcrumb-item active" aria-current="page">Chi tiết sản phẩm đấu giá</li>
 			</ol>
 		</nav>
 		<!-- !!!!  -->
@@ -120,6 +120,7 @@
 		<div class="card">
 			<div class="row">
 				<aside class="col-sm-5 border-right">
+						<article class="card-body p-5">
 					<!-- Carousel Header -->
 					<div id="demo" class="carousel slide" data-ride="carousel">
 
@@ -174,177 +175,101 @@
 						<div class="item-gallery">
 							<img src="http://placekitten.com/200/127"> </div>
 					</div>
+					</article>
 					<!-- gallery-wrap .end// -->
 				</aside>
 				<aside class="col-sm-7">
 					<article class="card-body p-5">
-						<h3 class="title mb-3" id="lbProductName"></h3>
+					<hidden name="idsp" value="" />
 
-						<h5 class="price">Giá hiện tại:
-							<span id="lbPrice"></span>
-							<span>VND</span>
-						</h5>
+					<h3 class="title mb-3" id="lbProductName"></h3>
 
-						<h5 class="price">Giá mua ngay:
-							<span id="lbPriceNow"></span>
-							<span id="lbUnitNow">VND</span>
-						</h5>
+					<hidden id="idPriceNow" value="0"></hidden>
+					<h5 class="price">Giá:
+						<span id="lbPrice"></span>
+						<span>VND</span>
+					</h5>
 
-						<span class="lbPurchaser">
-							<b>Người bán: </b><span><a href="#">Hiệp</a></span>&nbsp;(<i class="far fa-thumbs-up"></i>&nbsp;86)					
+					<h5 class="price">Mua ngay:
+						<span id="lbPriceNow"></span>
+						<span id="lbUnitNow">VND</span>
+					</h5>
+
+					<span class="lbPurchaser">
+						<b>Người bán: </b>
+						<span>
+							<a href="#" id="SalerName"></a>
+						</span>&nbsp;(
+						<i class="far fa-thumbs-up"></i>&nbsp;<span id="reviewSaler"></span>)
+					</span>
+					<br>
+					<span class="lbDealer">
+						<b>Đấu giá cao nhất: </b>
+						<span>
+							<a href="#" id="PurchaserName"></a>
+						</span>&nbsp;(
+						<i class="far fa-thumbs-up"></i>&nbsp;<span id="reviewPurchaser"></span>)
+					</span>
+					<br>
+					<span class="lbCreateTime">
+						<b>Thời gian đăng: </b>
+						<span id="">13-7</span>
+					</span>
+					<br>
+					<span class="lbEndTime">
+						<b>Thời gian kết thúc: </b>
+						<span id="">13-7</span>
+					</span>
+					<br>
+					<span class="lbEndTime">
+						<b>Mô tả: </b>
+						<span id="">
+							<p>Here goes description consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+								Ut enim ad minim veniam, quis nostrud exercitation ullamco </p>
 						</span>
-
-						<dl class="item-property">
-							<dt>Description</dt>
-							<dd>
-								<p>Here goes description consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-									Ut enim ad minim veniam, quis nostrud exercitation ullamco </p>
-							</dd>
-						</dl>
-						<dl class="param param-feature">
-							<dt>Model#</dt>
-							<dd>12345611</dd>
-						</dl>
-						<!-- item-property-hor .// -->
-						<!-- item-property-hor .// -->
-						<dl class="param param-feature">
-							<dt>Delivery</dt>
-							<dd>Russia, USA, and Europe</dd>
-						</dl>
-						<!-- item-property-hor .// -->
-
 						<hr>
-						<div class="row">
-							<div class="col-sm-5">
-								<dl class="param param-inline">
-									<dt>Quantity: </dt>
-									<dd>
-										<select class="form-control form-control-sm" style="width:70px;">
-											<option> 1 </option>
-											<option> 2 </option>
-											<option> 3 </option>
-										</select>
-									</dd>
-								</dl>
-								<!-- item-property .// -->
+					</span>
+
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<button type="button" class="btn btn-secondary" id="btnSubDealPrice">-</button>
+								</div>
+								<hidden id="idPriceStep" value="0"></hidden>
+								<input type="text" class="form-control text-center" id="tbDealPrice" readonly>
+								<div class="input-group-prepend">
+									<button type="button" class="btn btn-secondary" id="btnAddDealPrice">+</button>
+								</div>
 							</div>
-							<!-- col.// -->
-							<div class="col-sm-7">
-								<dl class="param param-inline">
-									<dt>Size: </dt>
-									<dd>
-										<label class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-											<span class="form-check-label">SM</span>
-										</label>
-										<label class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-											<span class="form-check-label">MD</span>
-										</label>
-										<label class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-											<span class="form-check-label">XXL</span>
-										</label>
-									</dd>
-								</dl>
-								<!-- item-property .// -->
-							</div>
-							<!-- col.// -->
 						</div>
-						<!-- row.// -->
-						<hr>
-						<a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
-						<a href="#" class="btn btn-lg btn-outline-primary text-uppercase">
-							<i class="fas fa-shopping-cart"></i> Add to cart </a>
-					</article>
+						<div class="col-sm-6"></div>
+					</div>
+					<!-- row.// -->
+					<br>
+					<a href="#" class="btn btn-lg btn-primary text-uppercase">
+						&nbsp;&nbsp;
+						<i class="fas fa-gavel"></i>
+						Đấu giá &nbsp;&nbsp;</a>
+					<a href="#" class="btn btn-lg btn-outline-primary text-uppercase">
+						<i class="fas fa-shopping-cart"></i>
+						Mua ngay</a>
+					<a href="#" class="btn btn-lg btn-outline-danger text-uppercase">
+						<i class="fas fa-heart"></i>
+					</a>
 					<!-- card-body.// -->
+				</article>
 				</aside>
 				<!-- col.// -->
 			</div>
 			<!-- row.// -->
 		</div>
 
-		<div class="card">
-			<div class="container-fluid">
-				<div class="wrapper row">
-					<div class="preview col-md-6">
-
-						<div class="preview-pic tab-content">
-							<div class="tab-pane active" id="pic-1">
-								<img src="http://placekitten.com/400/252" />
-							</div>
-							<div class="tab-pane" id="pic-2">
-								<img src="http://placekitten.com/200/127" />
-							</div>
-							<div class="tab-pane" id="pic-3">
-								<img src="http://placekitten.com/400/252" />
-							</div>
-						</div>
-						<ul class="preview-thumbnail nav nav-tabs">
-							<li class="active">
-								<a data-target="#pic-1" data-toggle="tab">
-									<img src="http://placekitten.com/200/126" />
-								</a>
-							</li>
-							<li>
-								<a data-target="#pic-2" data-toggle="tab">
-									<img src="http://placekitten.com/200/127" />
-								</a>
-							</li>
-							<li>
-								<a data-target="#pic-3" data-toggle="tab">
-									<img src="http://placekitten.com/200/126" />
-								</a>
-							</li>
-						</ul>
-
-					</div>
-					<div class="details col-md-6">
-						<h3 class="product-title">men's shoes fashion</h3>
-						<div class="rating">
-							<div class="stars">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-							<span class="review-no">41 reviews</span>
-						</div>
-						<p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim
-							sociosqu delectus posuere.</p>
-						<h4 class="price">current price:
-							<span>$180</span>
-						</h4>
-						<p class="vote">
-							<strong>91%</strong> of buyers enjoyed this product!
-							<strong>(87 votes)</strong>
-						</p>
-						<h5 class="sizes">sizes:
-							<span class="size" data-toggle="tooltip" title="small">s</span>
-							<span class="size" data-toggle="tooltip" title="medium">m</span>
-							<span class="size" data-toggle="tooltip" title="large">l</span>
-							<span class="size" data-toggle="tooltip" title="xtra large">xl</span>
-						</h5>
-						<h5 class="colors">colors:
-							<span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
-							<span class="color green"></span>
-							<span class="color blue"></span>
-						</h5>
-						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">Đấu giá</button>
-							<button class="like btn btn-default" type="button">
-								<span class="fa fa-heart"></span>
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 
 		<!-- Footer -->
 		<br>
-		<footer class="py-3 bg-dark">
+		<footer class="py-5 bg-dark">
 			<div class="container">
 				<p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
 			</div>
