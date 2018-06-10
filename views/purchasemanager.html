@@ -135,7 +135,7 @@
 					    aria-controls="settings">
 						Hồ sơ mua
 					</a>
-					<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab"
+					<a class="list-group-item list-group-item-action" id="list-role-list" data-toggle="list" href="#list-role" role="tab"
 					    aria-controls="settings">
 						Cấp quyền bán
 					</a>
@@ -163,17 +163,295 @@
 							<thead class="thead-light">
 								<tr>
 									<th scope="col"></th>
-									<th style="min-width: 400px;" scope="col"><center>Tên sản phẩm</center></th>
+									<th style="min-width: 400px;" scope="col">
+										<center>Tên sản phẩm</center>
+									</th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
-							<tbody>								
+							<tbody>
 							</tbody>
 						</table>
 					</div>
-					<div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
-					<div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
-					<div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+					<div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...
+
+					</div>
+					<div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...
+						<table class="table" id="likeProductTable">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col"></th>
+									<th style="min-width: 400px;" scope="col">
+										<center>
+											<h4>
+												<strong style="color: midnightblue">HỒ SƠ CÁ NHÂN</strong>
+											</h4>
+										</center>
+										<!-- Page Container -->
+										<div class="container">
+											<form class="form-horizontal" action="">
+												<div id="accordion">
+													<div class="card">
+														<div class="card-header">
+															<a class="card-link" data-toggle="collapse" href="#collapseThree">
+																Lịch sử đấu giá
+															</a>
+														</div>
+														<div id="collapseThree" class="collapse show" data-parent="#accordion">
+															<div class="card-body">
+																<div class="table-responsive">
+																	<table class="table">
+																		<thead>
+																			<tr>
+																				<th>Mã sản phẩm</th>
+																				<th>Tên sản phẩm</th>
+																				<th>Ngày đăng</th>
+																				<th>Giá đấu</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>1</td>
+																				<td>Son MAC chính hãng</td>
+																				<td>21-06-2018</td>
+																				<td>500.000 VNĐ</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+														</div>
+													</div>
+
+												</div>
+											</form>
+											<br>
+										</div>
+									</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...
+						<table class="table" id="likeProductTable">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col"></th>
+									<th style="min-width: 400px;" scope="col">
+										<center>
+											<h4>
+												<strong style="color: midnightblue">HỒ SƠ CÁ NHÂN</strong>
+											</h4>
+										</center>
+										<!-- Page Container -->
+										<div class="container">
+											<form class="form-horizontal" action="">
+												<div id="accordion">
+													<div class="card">
+														<div class="card-header">
+															<a class="card-link" data-toggle="collapse" href="#collapseUpdate">
+																Cập nhật thông tin cá nhân
+															</a>
+														</div>
+														<div id="collapseUpdate" class="collapse show" data-parent="#accordion">
+															<div class="card-body">
+																<div class="container">
+																	<form class="form-horizontal" action="">
+																		<div class="form-group">
+																			<label class="control-label" for="email">Email*</label>
+																			<input type="text" class="form-control" id="email" placeholder="Email">
+																		</div>
+																		<div class="form-group">
+																			<label class="control-label" for="name">Name*</label>
+																			<input type="text" class="form-control" id="name" placeholder="Name">
+																		</div>
+																		<div class="form-group">
+																			<label class="control-label" for="password">Password*</label>
+																			<input type="text" class="form-control" id="password" placeholder="Password">
+																		</div>
+																		<div class="form-group">
+																			<label class="control-label" for="oldPassword">Old Password*</label>
+																			<input type="text" class="form-control" id="oldPassword" placeholder="Decription">
+																		</div>
+																		<div class="form-group form-check">
+																			<input type="checkbox" class="form-check-input" id="exampleCheck1">
+																			<label class="form-check-label" for="exampleCheck1">Check me out</label>
+																		  </div>
+																		<button type="submit" class="btn btn-primary">Submit</button>
+																	</form>
+																	<br>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="card">
+														<div class="card-header">
+															<a class="collapsed card-link" data-toggle="collapse" href="#collapseOne">
+																Yêu thích
+															</a>
+														</div>
+														<div id="collapseOne" class="collapse" data-parent="#accordion">
+															<div class="card-body">
+																<div class="table-responsive">
+																	<table class="table">
+																		<thead>
+																			<tr>
+																				<th>Mã sản phẩm</th>
+																				<th>Tên sản phẩm</th>
+																				<th>Ngày ra giá</th>
+																				<th>Giá đấu</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>1</td>
+																				<td>Son MAC chính hãng</td>
+																				<td>21-06-2018</td>
+																				<td>500.000 VNĐ</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+														</div>
+														<div class="card-header">
+															<a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+																Đang tham gia
+															</a>
+														</div>
+														<div id="collapseTwo" class="collapse" data-parent="#accordion">
+															<div class="card-body">
+																<div class="table-responsive">
+																	<table class="table">
+																		<thead>
+																			<tr>
+																				<th>Mã sản phẩm</th>
+																				<th>Tên sản phẩm</th>
+																				<th>Ngày ra giá</th>
+																				<th>Giá đấu</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>1</td>
+																				<td>Son MAC chính hãng</td>
+																				<td>21-06-2018</td>
+																				<td>500.000 VNĐ</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+														</div>
+														<div class="card-header">
+															<a class="collapsed card-link" data-toggle="collapse" href="#collapseWin">
+																You Win!!!
+															</a>
+														</div>
+														<div id="collapseWin" class="collapse" data-parent="#accordion">
+															<div class="card-body">
+																<div class="table-responsive">
+																	<table class="table">
+																		<thead>
+																			<tr>
+																				<th>Mã sản phẩm</th>
+																				<th>Tên sản phẩm</th>
+																				<th>Ngày ra giá</th>
+																				<th>Giá đấu</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>1</td>
+																				<td>Son MAC chính hãng</td>
+																				<td>21-06-2018</td>
+																				<td>500.000 VNĐ</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+											<br>
+										</div>
+									</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane fade" id="list-role" role="tabpanel" aria-labelledby="list-role-list">...
+						<table class="table" id="likeProductTable">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col"></th>
+									<th style="min-width: 400px;" scope="col">
+										<center>
+											<h4>
+												<strong style="color: midnightblue">HỒ SƠ CÁ NHÂN</strong>
+											</h4>
+										</center>
+										<!-- Page Container -->
+										<div class="container">
+											<form class="form-horizontal" action="">
+												<div id="accordion">
+													<div class="card">
+														<div class="card-header">
+															<a class="card-link" data-toggle="collapse" href="#collapseUpdate">
+																Cập nhật thông tin cá nhân
+															</a>
+														</div>
+														<div id="collapseUpdate" class="collapse show" data-parent="#accordion">
+															<div class="card-body">
+																<div class="container">
+																	<form class="form-horizontal" action="">
+																		<div class="form-group">
+																			<label class="control-label" for="email">Email*</label>
+																			<input type="text" class="form-control" id="email" placeholder="Email">
+																		</div>
+																		<div class="form-group">
+																			<label class="control-label" for="name">Name*</label>
+																			<input type="text" class="form-control" id="name" placeholder="Name">
+																		</div>
+																		<div class="form-group">
+																			<label class="control-label" for="password">Password*</label>
+																			<input type="text" class="form-control" id="password" placeholder="Password">
+																		</div>
+																		<div class="form-group">
+																			<label class="control-label" for="oldPassword">Old Password*</label>
+																			<input type="text" class="form-control" id="oldPassword" placeholder="Decription">
+																		</div>
+																		<div class="form-group form-check">
+																			<input type="checkbox" class="form-check-input" id="exampleCheck1">
+																			<label class="form-check-label" for="exampleCheck1">Check me out</label>
+																		  </div>
+																		<button type="submit" class="btn btn-primary">Submit</button>
+																	</form>
+																	<br>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+											<br>
+										</div>
+									</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
