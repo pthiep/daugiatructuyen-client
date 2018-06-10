@@ -21,9 +21,12 @@
 	<link href="../css/productdetail.css" rel="stylesheet">
 
 	<!-- Custom js -->
+	<script language="javascript" src="../vendor/socket.io/socket.io.js"></script>
 	<script language="javascript" src="../vendor/jquery/jquery.min.js"></script>
+	<script language="javascript" src="../js/jwt.js"></script>
 	<script language="javascript" src="../js/login.js"></script>
 	<script language="javascript" src="../js/dealdetail.js"></script>
+	<script language="javascript" src="../js/category.js"></script>
 
 </head>
 
@@ -80,13 +83,11 @@
 			<div class="row">
 				<div class="col-lg-2">
 					<div class="btn-group">
-						<button type="button" class="btn btn-success col-mb-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<button type="button" class="btn btn-success col-mb-2 dropdown-toggle" id="btnLoadCategory" data-toggle="dropdown" aria-haspopup="true"
+						    aria-expanded="false">
 							<i class="fas fa-list-ul"></i>&nbsp;&nbsp;Danh mục&nbsp;
 						</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<a class="dropdown-item" href="#">Something else here</a>
+						<div class="dropdown-menu" id="listCategory">
 						</div>
 					</div>
 				</div>
@@ -120,152 +121,183 @@
 		<div class="card">
 			<div class="row">
 				<aside class="col-sm-5 border-right">
-						<article class="card-body p-5">
-					<!-- Carousel Header -->
-					<div id="demo" class="carousel slide" data-ride="carousel">
+					<article class="card-body p-5">
+						<!-- Carousel Header -->
+						<div id="demo" class="carousel slide" data-ride="carousel">
 
-						<!-- Indicators -->
-						<ul class="carousel-indicators">
-							<li data-target="#demo" data-slide-to="0" class="active"></li>
-							<li data-target="#demo" data-slide-to="1"></li>
-							<li data-target="#demo" data-slide-to="2"></li>
-						</ul>
+							<!-- Indicators -->
+							<ul class="carousel-indicators">
+								<li data-target="#demo" data-slide-to="0" class="active"></li>
+								<li data-target="#demo" data-slide-to="1"></li>
+								<li data-target="#demo" data-slide-to="2"></li>
+							</ul>
 
-						<!-- The slideshow -->
-						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img src="http://placekitten.com/200/127" alt="Los Angeles">
-								<div class="carousel-caption">
-									<h3>Los Angeles</h3>
-									<p>We had such a great time in LA!</p>
+							<!-- The slideshow -->
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<img src="http://placekitten.com/200/127" alt="Los Angeles">
+									<div class="carousel-caption">
+										<h3>Los Angeles</h3>
+										<p>We had such a great time in LA!</p>
+									</div>
+								</div>
+								<div class="carousel-item">
+									<img src="http://placekitten.com/200/127" alt="Chicago">
+									<div class="carousel-caption">
+										<h3>Los Angeles</h3>
+										<p>We had such a great time in LA!</p>
+									</div>
+								</div>
+								<div class="carousel-item">
+									<img src="http://placekitten.com/200/127" alt="New York">
+									<div class="carousel-caption">
+										<h3>Los Angeles</h3>
+										<p>We had such a great time in LA!</p>
+									</div>
 								</div>
 							</div>
-							<div class="carousel-item">
-								<img src="http://placekitten.com/200/127" alt="Chicago">
-								<div class="carousel-caption">
-									<h3>Los Angeles</h3>
-									<p>We had such a great time in LA!</p>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<img src="http://placekitten.com/200/127" alt="New York">
-								<div class="carousel-caption">
-									<h3>Los Angeles</h3>
-									<p>We had such a great time in LA!</p>
-								</div>
-							</div>
+
+							<!-- Left and right controls -->
+							<a class="carousel-control-prev" href="#demo" data-slide="prev">
+								<span class="carousel-control-prev-icon"></span>
+							</a>
+							<a class="carousel-control-next" href="#demo" data-slide="next">
+								<span class="carousel-control-next-icon"></span>
+							</a>
+
+
+
 						</div>
-
-						<!-- Left and right controls -->
-						<a class="carousel-control-prev" href="#demo" data-slide="prev">
-							<span class="carousel-control-prev-icon"></span>
-						</a>
-						<a class="carousel-control-next" href="#demo" data-slide="next">
-							<span class="carousel-control-next-icon"></span>
-						</a>
-
-
-
-					</div>
-					<div class="img-small-wrap">
-						<div class="item-gallery">
-							<img src="http://placekitten.com/200/127"> </div>
-						<div class="item-gallery">
-							<img src="http://placekitten.com/200/127"> </div>
-						<div class="item-gallery">
-							<img src="http://placekitten.com/200/127"> </div>
-					</div>
+						<div class="img-small-wrap">
+							<div class="item-gallery">
+								<img src="http://placekitten.com/200/127"> </div>
+							<div class="item-gallery">
+								<img src="http://placekitten.com/200/127"> </div>
+							<div class="item-gallery">
+								<img src="http://placekitten.com/200/127"> </div>
+						</div>
 					</article>
 					<!-- gallery-wrap .end// -->
 				</aside>
 				<aside class="col-sm-7">
 					<article class="card-body p-5">
-					<hidden name="idsp" value="" />
+						<hidden id="dealid" value="0" /></hidden>
+						<hidden id="purchaserid" value="0" /></hidden>
+						<hidden id="idPriceNow" value="0"></hidden>
+						<hidden id="idPriceStep" value="0"></hidden>
 
-					<h3 class="title mb-3" id="lbProductName"></h3>
+						<h3 class="title mb-3" id="lbProductName"></h3>
+						<h5 class="price">Giá:
+							<span id="lbPrice"></span>
+							<span>VND</span>
+						</h5>
 
-					<hidden id="idPriceNow" value="0"></hidden>
-					<h5 class="price">Giá:
-						<span id="lbPrice"></span>
-						<span>VND</span>
-					</h5>
+						<h5 class="price">Mua ngay:
+							<span id="lbPriceNow"></span>
+							<span id="lbUnitNow">VND</span>
+						</h5>
 
-					<h5 class="price">Mua ngay:
-						<span id="lbPriceNow"></span>
-						<span id="lbUnitNow">VND</span>
-					</h5>
-
-					<span class="lbPurchaser">
-						<b>Người bán: </b>
-						<span>
-							<a href="#" id="SalerName"></a>
-						</span>&nbsp;(
-						<i class="far fa-thumbs-up"></i>&nbsp;<span id="reviewSaler"></span>)
-					</span>
-					<br>
-					<span class="lbDealer">
-						<b>Đấu giá cao nhất: </b>
-						<span>
-							<a href="#" id="PurchaserName"></a>
-						</span>&nbsp;(
-						<i class="far fa-thumbs-up"></i>&nbsp;<span id="reviewPurchaser"></span>)
-					</span>
-					<br>
-					<span class="lbCreateTime">
-						<b>Thời gian đăng: </b>
-						<span id="">13-7</span>
-					</span>
-					<br>
-					<span class="lbEndTime">
-						<b>Thời gian kết thúc: </b>
-						<span id="">13-7</span>
-					</span>
-					<br>
-					<span class="lbEndTime">
-						<b>Mô tả: </b>
-						<span id="">
-							<p>Here goes description consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-								Ut enim ad minim veniam, quis nostrud exercitation ullamco </p>
+						<span class="lbPurchaser">
+							<b>Người bán: </b>
+							<span>
+								<a href="#" id="SalerName"></a>
+							</span>&nbsp;(
+							<i class="far fa-thumbs-up"></i>&nbsp;
+							<span id="reviewSaler"></span>)
 						</span>
-						<hr>
-					</span>
+						<br>
+						<span class="lbDealer">
+							<b>Đấu giá cao nhất: </b>
+							<span>
+								<a href="#" id="PurchaserName"></a>
+							</span>&nbsp;(
+							<i class="far fa-thumbs-up"></i>&nbsp;
+							<span id="reviewPurchaser"></span>)
+						</span>
+						<br>
+						<span class="lbCreateTime">
+							<b>Thời gian đăng: </b>
+							<span id="createTime"></span>
+						</span>
+						<br>
+						<span class="lbEndTime">
+							<b>Thời gian kết thúc: </b>
+							<span id="endTime"></span>
+						</span>
+						<br>
+						<span class="lbEndTime">
+							<b>Mô tả: </b>
+							<span>
+								<p id="descrep">Here goes description consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+									Ut enim ad minim veniam, quis nostrud exercitation ullamco </p>
+							</span>
+							<hr>
+						</span>
+						<div class="d-none alert alert-danger" role="alert" id="notificationSuccessDeal">
+							Bạn đã đấu giá thành công
+						</div>
+						<div class="d-none alert alert-danger" role="alert" id="notificationLogin">
+							Chưa đăng nhập tài khoản người dùng
+						</div>
+						<div class="d-none alert alert-danger" role="alert" id="notificationHighPrice">
+							Đã có người đấu giá cao hơn bạn
+						</div>
+						<div class="d-none alert alert-danger" role="alert" id="notificationTimeOut">
+							Hết thời gian đấu giá
+						</div>
 
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<button type="button" class="btn btn-secondary" id="btnSubDealPrice">-</button>
-								</div>
-								<hidden id="idPriceStep" value="0"></hidden>
-								<input type="text" class="form-control text-center" id="tbDealPrice" readonly>
-								<div class="input-group-prepend">
-									<button type="button" class="btn btn-secondary" id="btnAddDealPrice">+</button>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<button type="button" class="btn btn-secondary" id="btnSubDealPrice">-</button>
+									</div>
+									<input type="text" class="form-control text-center" id="tbDealPrice" readonly>
+									<div class="input-group-prepend">
+										<button type="button" class="btn btn-secondary" id="btnAddDealPrice">+</button>
+									</div>
 								</div>
 							</div>
+							<div class="col-sm-6"></div>
 						</div>
-						<div class="col-sm-6"></div>
-					</div>
-					<!-- row.// -->
-					<br>
-					<a href="#" class="btn btn-lg btn-primary text-uppercase">
-						&nbsp;&nbsp;
-						<i class="fas fa-gavel"></i>
-						Đấu giá &nbsp;&nbsp;</a>
-					<a href="#" class="btn btn-lg btn-outline-primary text-uppercase">
-						<i class="fas fa-shopping-cart"></i>
-						Mua ngay</a>
-					<a href="#" class="btn btn-lg btn-outline-danger text-uppercase">
-						<i class="fas fa-heart"></i>
-					</a>
-					<!-- card-body.// -->
-				</article>
+						<!-- row.// -->
+						<br>
+						<a href="#" class="btn btn-lg btn-primary text-uppercase" id="btnDeal">
+							&nbsp;&nbsp;
+							<i class="fas fa-gavel"></i>
+							Đấu giá &nbsp;&nbsp;</a>
+						<a href="#" class="btn btn-lg btn-outline-primary text-uppercase" id="btnBuyNow">
+							<i class="fas fa-shopping-cart"></i>
+							Mua ngay</a>
+						<a href="#" class="btn btn-lg btn-outline-danger text-uppercase">
+							<i class="fas fa-heart"></i>
+						</a>
+						<br>
+						<br>
+
+						<!-- card-body.// -->
+					</article>
 				</aside>
 				<!-- col.// -->
 			</div>
 			<!-- row.// -->
 		</div>
 
-		
+		<table class="table" id="dealProductTable">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col"></th>
+					<th scope="col">Thời gian đấu giá</th>
+					<th scope="col">Tên người đấu giá</th>
+					<th scope="col">Giá đấu giá</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+
+
+
 
 		<!-- Footer -->
 		<br>
@@ -311,6 +343,9 @@
 							</div>
 						</div>
 					</form>
+					<div class="d-none alert alert-danger" role="alert" id="notificationLogined">
+						Tài khoản đã đăng nhập ở nơi khác
+					</div>
 					<div class="d-none alert alert-warning" role="alert" id="notificationNull">
 						Chưa nhập email hoặc mật khẩu.
 					</div>

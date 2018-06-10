@@ -1,24 +1,47 @@
-var socket = io('http://localhost:3000');
 $(document).ready(function () {
-
-	socket.emit('datetime');
-	socket.on('datetime', function (time) {
-		var timeserver = time.datetime;
-
+	$.ajax({
+		url: 'http://localhost:3000/timenow',
+		type: 'get',
+		dataType: 'json'
+	}).done(function (data) {
+		var timeserver = data.time;
 		var access_token = getCookie('access_token');
 		var exp_token = getCookie('exp_token');
 		if (access_token != '' && parseInt(exp_token) - parseInt(timeserver) > 0) {
 			showNavbarUser();
 		} else {
 			if (getCookie('userid') != ''){
-				socket.emit('logout', { userid: getCookie('userid') });
+				updateLoginStatus(getCookie('userid'), 1);
 			}			
 			cleanCookieStorage();
 			cleanLoginModal();
 			showNavbarLogin();
 		}
+	}).fail(function (xhr, status, err) {
+		console.log(err);
 	});
 });
+
+function updateLoginStatus(userid, status) {
+	var dataArr = {
+		userid: userid,
+		status: status
+	};
+
+	var dataJS = JSON.stringify(dataArr);
+	$.ajax({
+		url: 'http://localhost:3000/users/login',
+		type: 'POST',
+		dataType: 'json',
+		timeout: 10000,
+		contentType: 'application/json',
+		data: dataJS
+	}).done(function () {
+		setCookie('userid', userid, 7);
+	}).fail(function (xhr, status, err) {
+		console.log(err);
+	});
+}
 
 function showNavbarUser() {
 	$(navbarlogin).addClass('d-none');

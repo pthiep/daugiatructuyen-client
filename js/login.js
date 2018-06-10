@@ -1,17 +1,4 @@
-var socket = io('http://localhost:3000');
-
-LoginCheckUserOn();
-
 $(document).ready(function () {
-
-
-
-	if (localStorage.getItem('isLogin') === 'true') {
-		showNavbarUser();
-	} else {
-		showNavbarLogin();
-	}
-
 	// btncloseLogin
 	$('#btncloseLogin').on('click', function () {
 		hiddennotificationNull();
@@ -24,7 +11,7 @@ $(document).ready(function () {
 
 	// btnLogin
 	$('#btnLogin').on('click', function () {
-		LoginEmmit();
+		Login();
 	});
 
 	$('#btnExit').on('click', function () {
@@ -34,56 +21,7 @@ $(document).ready(function () {
 
 });
 
-function LoginCheckUserOn() {
-	socket.on('login_checkuser', function (data) {
-		if (data.checkuser === true && data.islogin === false) {
-			LoginJWTOn(data.userid);
-			$('#loginModal').modal('hide');
-		} else if (data.checkuser === true && data.islogin === true) {
-			hiddennotificationLogin();
-			shownotificationLogined();
-		} else if (data.checkuser === false) {
-			shownotificationLogin();
-			hiddennotificationLogined();
-		}
-	});
-}
-
-function LoginJWTOn(userid) {
-	updateLoginStatus(userid, 0);
-	var dataArr = {
-		userid: userid
-	};
-	var dataJS = JSON.stringify(dataArr);
-	$.ajax({
-		url: 'http://localhost:3000/jwt/login',
-		type: 'POST',
-		dataType: 'json',
-		timeout: 10000,
-		contentType: 'application/json',
-		data: dataJS
-	}).done(function (data) {
-		setCookie('access_token', data.access_token, 7);
-
-		var access_token = data.access_token;
-		$.ajax({
-			url: 'http://localhost:3000/jwt/secured',
-			dataType: 'json',
-			headers: {
-				'x-access-token': access_token
-			}
-		}).done(function (data) {
-			setCookie('exp_token', data.payload.exp, 7);
-			showNavbarUser();
-		});
-
-	}).fail(function (xhr, status, err) {
-		console.log(err);
-	});
-}
-
-function LoginEmmit() {
-
+function Login() {
 	var notifNull = $(notificationNull).hasClass('d-none');
 	if (notifNull !== true) {
 		hiddennotificationNull();
@@ -98,9 +36,60 @@ function LoginEmmit() {
 	var passLogin = $(document.getElementById('loginPassword')).val();
 
 	if (emailLogin !== '' && passLogin !== '') {
-		socket.emit('login', {
+		var dataArr = {
 			username: emailLogin,
 			password: passLogin
+		};
+
+		var dataJS = JSON.stringify(dataArr);
+		$.ajax({
+			url: 'http://localhost:3000/users/checkuser',
+			type: 'POST',
+			dataType: 'json',
+			timeout: 10000,
+			contentType: 'application/json',
+			data: dataJS
+		}).done(function (data) {
+			if (data.checkuser === true && data.islogin === false) {
+				updateLoginStatus(data.userid, 0);
+				var dataArr = {
+					userid: data.userid
+				};
+				var dataJS = JSON.stringify(dataArr);
+				$.ajax({
+					url: 'http://localhost:3000/jwt/login',
+					type: 'POST',
+					dataType: 'json',
+					timeout: 10000,
+					contentType: 'application/json',
+					data: dataJS
+				}).done(function (data) {
+					setCookie('access_token', data.access_token, 7);
+					var access_token = data.access_token;
+					$.ajax({
+						url: 'http://localhost:3000/jwt/secured',
+						dataType: 'json',
+						headers: {
+							'x-access-token': access_token
+						}
+					}).done(function (data) {
+						setCookie('exp_token', data.payload.exp, 7);
+						$('#loginModal').modal('hide');
+						showNavbarUser();
+						location.reload();
+					});
+				}).fail(function (xhr, status, err) {
+					console.log(err);
+				});
+			} else if (data.checkuser === true && data.islogin === true) {
+				hiddennotificationLogin();
+				shownotificationLogined();
+			} else if (data.checkuser === false) {
+				shownotificationLogin();
+				hiddennotificationLogined();
+			}
+		}).fail(function (xhr, status, err) {
+			console.log(err);
 		});
 	} else {
 		shownotificationNull();
@@ -108,9 +97,7 @@ function LoginEmmit() {
 }
 
 function logoutUser() {
-	socket.emit('logout', {
-		userid: getCookie('userid')
-	});
+	updateLoginStatus(getCookie('userid'), 1);
 	cleanCookieStorage();
 	showNavbarLogin();
 }
@@ -139,7 +126,7 @@ function updateLoginStatus(userid, status) {
 // Press Enter login
 function enterLogin(e) {
 	if (e.keyCode == 13) {
-		LoginEmmit();
+		Login();
 		return false;
 	}
 }
