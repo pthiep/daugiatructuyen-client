@@ -20,9 +20,12 @@
 	<link href="../css/heroic-features.css" rel="stylesheet">
 	<link href="../css/productdetail.css" rel="stylesheet">
 
+
+
 	<!-- Custom js -->
 	<script language="javascript" src="../vendor/socket.io/socket.io.js"></script>
 	<script language="javascript" src="../vendor/jquery/jquery.min.js"></script>
+	<script language="javascript" src="../js/smooth/smooth.js"></script>
 	<script language="javascript" src="../js/jwt.js"></script>
 	<script language="javascript" src="../js/login.js"></script>
 	<script language="javascript" src="../js/dealdetail.js"></script>
@@ -121,62 +124,16 @@
 		<div class="card">
 			<div class="row">
 				<aside class="col-sm-5 border-right">
-					<article class="card-body p-5">
-						<!-- Carousel Header -->
-						<div id="demo" class="carousel slide" data-ride="carousel">
-
-							<!-- Indicators -->
-							<ul class="carousel-indicators">
-								<li data-target="#demo" data-slide-to="0" class="active"></li>
-								<li data-target="#demo" data-slide-to="1"></li>
-								<li data-target="#demo" data-slide-to="2"></li>
-							</ul>
-
-							<!-- The slideshow -->
-							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<img src="http://placekitten.com/200/127" alt="Los Angeles">
-									<div class="carousel-caption">
-										<h3>Los Angeles</h3>
-										<p>We had such a great time in LA!</p>
-									</div>
-								</div>
-								<div class="carousel-item">
-									<img src="http://placekitten.com/200/127" alt="Chicago">
-									<div class="carousel-caption">
-										<h3>Los Angeles</h3>
-										<p>We had such a great time in LA!</p>
-									</div>
-								</div>
-								<div class="carousel-item">
-									<img src="http://placekitten.com/200/127" alt="New York">
-									<div class="carousel-caption">
-										<h3>Los Angeles</h3>
-										<p>We had such a great time in LA!</p>
-									</div>
-								</div>
-							</div>
-
-							<!-- Left and right controls -->
-							<a class="carousel-control-prev" href="#demo" data-slide="prev">
-								<span class="carousel-control-prev-icon"></span>
-							</a>
-							<a class="carousel-control-next" href="#demo" data-slide="next">
-								<span class="carousel-control-next-icon"></span>
-							</a>
-
-
-
-						</div>
+					<article class="gallery-wrap"> 
+						<div class="img-big-wrap">
+						  <div> <a href="#"><img src="" id="slide_index"></a></div>
+						</div> <!-- slider-product.// -->
 						<div class="img-small-wrap">
-							<div class="item-gallery">
-								<img src="http://placekitten.com/200/127"> </div>
-							<div class="item-gallery">
-								<img src="http://placekitten.com/200/127"> </div>
-							<div class="item-gallery">
-								<img src="http://placekitten.com/200/127"> </div>
-						</div>
-					</article>
+						  <div class="item-gallery"> <img src="../img/laroche.jpg" id="slide_1"> </div>
+						  <div class="item-gallery"> <img src="../img/img_deal/deal_1_2.jpg" id="slide_2"> </div>
+						  <div class="item-gallery"> <img src="../img/img_deal/deal_1_3.jpg" id="slide_3"> </div>
+						  </div> <!-- slider-nav.// -->
+						</article>
 					<!-- gallery-wrap .end// -->
 				</aside>
 				<aside class="col-sm-7">
@@ -282,7 +239,7 @@
 			</div>
 			<!-- row.// -->
 		</div>
-
+		<br>
 		<table class="table" id="dealProductTable">
 			<thead class="thead-light">
 				<tr>
@@ -295,9 +252,6 @@
 			<tbody>
 			</tbody>
 		</table>
-
-
-
 
 		<!-- Footer -->
 		<br>

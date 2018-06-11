@@ -16,8 +16,14 @@
 	<!-- Font Awesome core CSS -->
 	<link href="../vendor/fontawesome/css/fontawesome-all.css" rel="stylesheet">
 
+	<!-- Slick -->
+	<link rel="stylesheet" type="text/css" href="../vendor/slick/slick.css" />
+	<link rel="stylesheet" type="text/css" href="../vendor/slick/slick-theme.css" />
+
 	<!-- Custom styles for this template -->
 	<link href="../css/heroic-features.css" rel="stylesheet">
+	<link href="../css/homepage.css" rel="stylesheet">
+
 
 	<!-- Custom js -->
 	<script language="javascript" src="../vendor/socket.io/socket.io.js"></script>
@@ -25,14 +31,15 @@
 	<script language="javascript" src="../js/jwt.js"></script>
 	<script language="javascript" src="../js/login.js"></script>
 	<script language="javascript" src="../js/category.js"></script>
+	<script language="javascript" src="../js/homepage.js"></script>
+
 </head>
 
 <body>
-
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="homepage.html">Start Bootstrap</a>
+			<a class="navbar-brand" href="../index.html">Start Bootstrap</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
 			    aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -60,8 +67,8 @@
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="#">Thông tin cá nhân</a>
-							<a class="dropdown-item" href="purchasemanager.html">Quản lý mua</a>
-							<a class="dropdown-item" href="salesmanager.html">Quản lý bán</a>
+							<a class="dropdown-item" href="#">Quản lý mua</a>
+							<a class="dropdown-item" href="#">Quản lý bán</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" id="btnExit" href="#">Đăng xuất</a>
 						</div>
@@ -70,10 +77,8 @@
 			</div>
 		</div>
 	</nav>
-
 	<!-- Page Content -->
 	<div class="container">
-
 		<!-- Categories - Search -->
 		<br>
 		<form>
@@ -154,223 +159,32 @@
 		</div>
 
 		<!-- Page Features -->
-
 		<br>
-		<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-			<h3 class="future">BEST BID</h3>
-		</nav>
-		<br>
-
-		<div class="row text-muted">
-			<div class="col-lg-3 col-md-6 mb-4">
-				<div class="card">
-					<img class="card-img-top" src="../img/laroche.jpg" alt="">
-					<div class="card-body">
-						<h4 class="card-title text-center">Laroche Posay</h4>
-						<div class="infor">
-							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
-							<span class="timeout" style="text-align: right">10:00:00</span>
-						</div>
-						<div class="card-footer">
-							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 mb-4">
-				<div class="card">
-					<img class="card-img-top" src="../img/laroche.jpg" alt="">
-					<div class="card-body">
-						<h4 class="card-title text-center">Laroche Posay</h4>
-						<div class="infor">
-							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
-							<span class="timeout" style="text-align: right">10:00:00</span>
-						</div>
-						<div class="card-footer">
-							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 mb-4">
-				<div class="card">
-					<img class="card-img-top" src="../img/laroche.jpg" alt="">
-					<div class="card-body">
-						<h4 class="card-title text-center">Laroche Posay</h4>
-						<div class="infor">
-							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
-							<span class="timeout" style="text-align: right">10:00:00</span>
-						</div>
-						<div class="card-footer">
-							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 mb-4">
-				<div class="card">
-					<img class="card-img-top" src="../img/laroche.jpg" alt="">
-					<div class="card-body">
-						<h4 class="card-title text-center">Laroche Posay</h4>
-						<div class="infor">
-							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
-							<span class="timeout" style="text-align: right">10:00:00</span>
-						</div>
-						<div class="card-footer">
-							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="alert alert-info" role="alert">
+			<center>
+				<h5 class="future">Top sản phẩm có nhiều lượt ra giá nhất</h5>
+			</center>
 		</div>
 		<br>
-
-		<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-			<h3 class="future">BEST PRICE</h3>
-		</nav>
+		<div class="slickTopBestBid" id="slickTopBestBid"></div>
 		<br>
 
-		<div class="row text-muted">
-			<div class="col-lg-3 col-md-6 mb-4">
-				<div class="card">
-					<img class="card-img-top" src="../img/laroche.jpg" alt="">
-					<div class="card-body">
-						<h4 class="card-title text-center">Laroche Posay</h4>
-						<div class="infor">
-							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
-							<span class="timeout" style="text-align: right">10:00:00</span>
-						</div>
-						<div class="card-footer">
-							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 mb-4">
-				<div class="card">
-					<img class="card-img-top" src="../img/laroche.jpg" alt="">
-					<div class="card-body">
-						<h4 class="card-title text-center">Laroche Posay</h4>
-						<div class="infor">
-							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
-							<span class="timeout" style="text-align: right">10:00:00</span>
-						</div>
-						<div class="card-footer">
-							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 mb-4">
-				<div class="card">
-					<img class="card-img-top" src="../img/laroche.jpg" alt="">
-					<div class="card-body">
-						<h4 class="card-title text-center">Laroche Posay</h4>
-						<div class="infor">
-							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
-							<span class="timeout" style="text-align: right">10:00:00</span>
-						</div>
-						<div class="card-footer">
-							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 mb-4">
-				<div class="card">
-					<img class="card-img-top" src="../img/laroche.jpg" alt="">
-					<div class="card-body">
-						<h4 class="card-title text-center">Laroche Posay</h4>
-						<div class="infor">
-							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
-							<span class="timeout" style="text-align: right">10:00:00</span>
-						</div>
-						<div class="card-footer">
-							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="alert alert-info" role="alert">
+			<center>
+				<h5 class="future">Top sản phẩm có giá cao nhất</h5>
+			</center>
 		</div>
+		<br>
+		<div class="slickTopBestPrice" id="slickTopBestPrice"></div>
 
 		<br>
-		<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-			<h3 class="future">TIMEOUT </h3>
-		</nav>
-		<br>
-
-		<div class="row text-muted">
-
-			<div class="col-lg-3 col-md-6 mb-4">
-				<div class="card">
-					<img class="card-img-top" src="../img/laroche.jpg" alt="">
-					<div class="card-body">
-						<h4 class="card-title text-center">Laroche Posay</h4>
-						<div class="infor">
-							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
-							<span class="timeout" style="text-align: right">10:00:00</span>
-						</div>
-						<div class="card-footer">
-							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 mb-4">
-				<div class="card">
-					<img class="card-img-top" src="../img/laroche.jpg" alt="">
-					<div class="card-body">
-						<h4 class="card-title text-center">Laroche Posay</h4>
-						<div class="infor">
-							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
-							<span class="timeout" style="text-align: right">10:00:00</span>
-						</div>
-						<div class="card-footer">
-							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 mb-4">
-				<div class="card">
-					<img class="card-img-top" src="../img/laroche.jpg" alt="">
-					<div class="card-body">
-						<h4 class="card-title text-center">Laroche Posay</h4>
-						<div class="infor">
-							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
-							<span class="timeout" style="text-align: right">10:00:00</span>
-						</div>
-						<div class="card-footer">
-							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 mb-4">
-				<div class="card">
-					<img class="card-img-top" src="../img/laroche.jpg" alt="">
-					<div class="card-body">
-						<h4 class="card-title text-center">Laroche Posay</h4>
-						<div class="infor">
-							<strong class="price" style="text-align: left; color: red">1.0000.000 VNĐ</strong>
-							<span class="timeout" style="text-align: right">10:00:00</span>
-						</div>
-						<div class="card-footer">
-							<a href="#" class="btn btn-primary">ĐẤU GIÁ NGAY!!!</a>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="alert alert-info" role="alert">
+			<center>
+				<h5 class="future">Top sản phẩm có nhiều lượt ra giá nhất</h5>
+			</center>
 		</div>
+		<br>
+		<div class="slickTopTimeOut" id="slickTopTimeOut"></div>
 		<!-- /.row -->
 
 		<!-- Footer -->
@@ -435,6 +249,7 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="../vendor/jquery/jquery.min.js"></script>
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="../vendor/slick/slick.js"></script>
 
 </body>
 
