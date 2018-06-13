@@ -196,5 +196,4 @@ function getStringOutTime(timenow, timeend, id) {
 		s = 'Hết thời gian';
 	}
 	$(document.getElementById(id)).text(s);
-	s
 }

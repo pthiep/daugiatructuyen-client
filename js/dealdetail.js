@@ -1,5 +1,11 @@
 var socket = io('http://localhost:3000');
 
+var updateid = new Array({
+	dealid: String,
+	sid: String,
+	endtime: Date
+});
+
 socket.on('update_dealdetail', function (data) {
 	// alert('ID : ' + socket.id);
 	getProductDetail();
@@ -10,7 +16,15 @@ socket.on('update_dealhistory', function (data) {
 	getDealHistory();
 });
 
+socket.on('time_ostartupdatetime', function (data) {
+	updateid.forEach(function (it) {
+		getStringOutTime(data, it.endtime, it.sid);
+	});
+	socket.emit('time_estartupdatetime', '');
+});
+
 $(document).ready(function () {
+	socket.emit('time_estartupdatetime', '');
 	getProductDetail();
 	getDealHistory();
 
@@ -75,7 +89,7 @@ function Deal() {
 					contentType: 'application/json',
 					data: dataJS
 				}).done(function (data) {
-					var time = new Date();	
+					var time = new Date();
 					var dataArr = {
 						dealid: dealid,
 						dealtime: time,
@@ -168,6 +182,17 @@ function getProductDetail() {
 		$(document.getElementById('reviewPurchaser')).text(data[0].danhgianguoimua);
 
 		loadInputDealPrice(data[0].giacaonhat, data[0].buocgia);
+
+		getStringOutTime(data[0].thoigianhientai, data[0].thoigianketthuc, 'timeOut');
+		var objcard = {
+			dealid: String,
+			sid: String,
+			endtime: Date
+		};
+		objcard.dealid = dealid;
+		objcard.sid = 'timeOut';
+		objcard.endtime = data[0].thoigianketthuc;
+		updateid.push(objcard);
 	}).fail(function (xhr, status, err) {
 		console.log(err);
 	});
@@ -238,6 +263,38 @@ function subInputDealPrice() {
 	if (result > parseInt(pricenow)) {
 		$(document.getElementById('tbDealPrice')).val(result);
 	}
+}
+
+function getStringOutTime(timenow, timeend, id) {
+	var d = new Date(timenow);
+	var now = d.getTime() / 1000;
+	d = new Date(timeend);
+	var end = d.getTime() / 1000;
+
+	var time = end - now;
+	var s = '';
+	if (time > 0) {
+		var days = Math.floor(time / (60 * 60 * 24));
+		var hours = Math.floor((time % (60 * 60 * 24)) / (60 * 60));
+		var minutes = Math.floor((time % (60 * 60)) / 60);
+		var seconds = Math.floor(time % 60);
+		if (days > 0) {
+			s = days + ' ngày ' + hours + ' giờ ' + minutes + ' phút ' + seconds + ' giây';
+		} else {
+			if (hours > 0) {
+				s = hours + ' giờ ' + minutes + ' phút ' + seconds + ' giây';
+			} else {
+				if (minutes > 0) {
+					s = minutes + ' phút ' + seconds + ' giây';
+				} else {
+					s = seconds + ' giây';
+				}
+			}
+		}
+	} else {
+		s = 'Hết thời gian';
+	}
+	$(document.getElementById(id)).text(s);
 }
 
 function hiddennotificationLogin() {

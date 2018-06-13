@@ -1,7 +1,7 @@
 var socket = io('http://localhost:3000');
 
 $(document).ready(function () {
-	
+	checkUserLogin();
 	loadListLikeProduct();
 
 	$('#list-likeproduct-list').on('click', function () {
@@ -9,6 +9,12 @@ $(document).ready(function () {
 	});
 
 });
+
+function checkUserLogin() {
+	if (getCookie('userid') === '') {
+		location.href = 'homepage.html';
+	}
+}
 
 function loadListLikeProduct() {
 	$("#likeProductTable > tbody tr").remove();

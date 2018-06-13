@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Quản lý mua</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Font Awesome core CSS -->
+	<link href="../vendor/fontawesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../vendor/fontawesome/css/fontawesome-all.css" rel="stylesheet">
+
+	<!-- DateTimePicker CSS -->
+	<link href="../vendor/tempusdominus/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="../css/heroic-features.css" rel="stylesheet">
+	<!-- Custom js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
+	<script language="javascript" src="../vendor/jquery/jquery.js"></script>
+
+	<script language="javascript" src="../vendor/tempusdominus/tempusdominus-bootstrap-4.min.js"></script>
+	<script language="javascript" src="../vendor/tempusdominus/moment.js"></script>
+	<script language="javascript" src="../js/jwt.js"></script>
+	<script language="javascript" src="../js/login.js"></script>
+	<script language="javascript" src="../js/sale.js"></script>
+	<script language="javascript" src="../js/datetimepicker.js"></script>
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="../index.html">Start Bootstrap</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			    aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto" id="navbarlogin">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Đăng kí</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
+					</li>
+				</ul>
+				<ul class="d-none navbar-nav ml-auto" id="navbaruser">
+					<li class="nav-item">
+						<a class="nav-link" href="purchasemanager.html">Quản lý mua</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="salemanager.html" id="btnSale">Quản lý bán</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsername" role="button" data-toggle="dropdown" aria-haspopup="true"
+						    aria-expanded="false">
+							Dropdown
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Thông tin cá nhân</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" id="btnExit" href="#">Đăng xuất</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Categories - Search -->
+		<br>
+		<form>
+			<div class="row">
+				<div class="col-lg-2">
+					<div class="btn-group">
+						<button type="button" class="btn btn-success col-mb-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-list-ul"></i>&nbsp;&nbsp;Danh mục&nbsp;
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="#">Something else here</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-7 offset-lg-1">
+					<input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
+				</div>
+				<div class="col-lg-2">
+					<button type="submit" class="btn btn-primary col-mb-2 offset-lg-2">
+						<i class="fas fa-search"></i>&nbsp;&nbsp;Tìm kiếm&nbsp;
+					</button>
+				</div>
+			</div>
+		</form>
+		<!-- !!!! -->
+
+		<!-- Beadcrumb -->
+		<br>
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="../index.html">Trang chủ</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">Quản lý bán</li>
+			</ol>
+		</nav>
+		<!-- !!!!  -->
+		<!-- Page Features -->
+
+		<div class="row">
+			<div class="col-3">
+				<div class="list-group" id="list-tab" role="tablist">
+					<a class="list-group-item list-group-item-action active" id="list-newproduct-list" data-toggle="list" href="#list-likeproduct"
+					    role="tab" aria-controls="likeproduct">
+						Đấu giá mới
+					</a>
+					<a class="list-group-item list-group-item-action" id="list-detailproduct-list" data-toggle="list" href="#list-profile" role="tab"
+					    aria-controls="profile">
+						Chi tiết đấu giá
+					</a>
+					<a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-messages" role="tab"
+					    aria-controls="messages">
+						Quản lý đấu giá
+					</a>
+				</div>
+			</div>
+			<div class="col-9">
+				<div class="tab-content" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="list-likeproduct" role="tabpanel" aria-labelledby="list-newproduct-list">
+						<br>
+						<div class="form-group row">
+							<label for="inputPassword" class="col-sm-3 col-form-label">
+								<strong>Tên sản phẩm (*):</strong>
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="nameProduct" placeholder="Nhập tên sản phẩm cần đấu giá">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputPassword" class="col-sm-3 col-form-label">
+								<strong>Giá gốc (*):</strong>
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="priceProduct" placeholder="Nhập giá gốc của sản phẩm cần đấu giá">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputPassword" class="col-sm-3 col-form-label">
+								<strong>Giá mua ngay (*):</strong>
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="pricenowProduct" placeholder="Nhập giá mua ngay của sản phẩm cần đấu giá">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputPassword" class="col-sm-3 col-form-label">
+								<strong>Bước giá (*):</strong>
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="pricestepProduct" placeholder="Nhập bước giá để đấu giá">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputPassword" class="col-sm-3 col-form-label">
+								<strong>Thời gian kết thúc (*):</strong>
+							</label>
+							<div class="col-sm-9">
+								<div class="input-group date" id="datetimepickerTimeEnd" data-target-input="nearest">
+									<input type="text" class="form-control datetimepicker-input" id="datetimepickerTimeEndText" data-target="#datetimepickerTimeEnd"
+									/>
+									<div class="input-group-append" data-target="#datetimepickerTimeEnd" data-toggle="datetimepicker">
+										<div class="input-group-text">
+											<i class="fa fa-calendar"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="inputPassword" class="col-sm-3 col-form-label">
+								<strong>Gia hạn (*):</strong>
+							</label>
+							<div class="col-sm-9">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="gridCheck">
+									<label class="form-check-label" for="gridCheck" data-toggle="tooltip" data-placement="right" title="Tự động gia hạn thêm 10 phút khi có người đấu giá trước khi kết thúc 5 phút">
+										<i class="far fa-question-circle"></i>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputPassword" class="col-sm-3 col-form-label">
+								<strong>Hình ảnh (3 tệp):</strong>
+							</label>
+							<div class="col-sm-9">
+								<input type="file" id="uploadIMG" name="uploadIMG" multiple accept=".jpg,.gif,.png" class="form-control-file" id="exampleFormControlFile1">
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-8"></div>
+							<div class="col-md-4">
+								<button type="submit" class="btn btn-primary" id="btnCreateDeal">Đăng đấu giá</button>
+							</div>
+						</div>
+
+						<br>
+					</div>
+					<div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-detailproduct-list">
+						<table class="table" id="likeProductTable">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col"></th>
+									<th style="min-width: 400px;" scope="col">
+										<center>
+											<h4>
+												<strong style="color: midnightblue">CHI TIẾT SẢN PHẨM</strong>
+											</h4>
+										</center>
+										<!-- Page Container -->
+										<div class="container">
+											<form class="form-horizontal" action="">
+												<div id="accordion">
+													<div class="card">
+														<div class="card-header">
+															<a class="card-link" data-toggle="collapse" href="#collapseOne">
+																Cập nhật thông tin sản phẩm
+															</a>
+														</div>
+														<div id="collapseOne" class="collapse show" data-parent="#accordion">
+															<div class="card-body">
+																<div class="container">
+																	<form class="form-horizontal" action="">
+																		<div class="form-group">
+																			<label class="control-label" for="discriptionProduct">Mô tả*</label>
+																			<input type="text" class="form-control" id="discriptionProduct" placeholder="Decription">
+																		</div>
+																		<button type="submit" class="btn btn-primary">Submit</button>
+																	</form>
+																	<br>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="card">
+														<div class="card-header">
+															<a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+																Lịch sử đấu giá
+															</a>
+														</div>
+														<div id="collapseTwo" class="collapse" data-parent="#accordion">
+															<div class="card-body">
+																<div class="table-responsive">
+																	<table class="table">
+																		<thead>
+																			<tr>
+																				<th>Mã sản phẩm</th>
+																				<th>Tên sản phẩm</th>
+																				<th>Ngày ra giá</th>
+																				<th>Giá đấu</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>1</td>
+																				<td>Son MAC chính hãng</td>
+																				<td>21-06-2018</td>
+																				<td>500.000 VNĐ</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+											<br>
+										</div>
+									</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-profile-list">
+						<table class="table" id="likeProductTable">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col"></th>
+									<th style="min-width: 400px;" scope="col">
+										<center>
+											<h4>
+												<strong style="color: midnightblue">HỒ SƠ CÁ NHÂN</strong>
+											</h4>
+										</center>
+										<!-- Page Container -->
+										<div class="container">
+											<form class="form-horizontal" action="">
+												<div id="accordion">
+													<div class="card">
+														<div class="card-header">
+															<a class="card-link" data-toggle="collapse" href="#collapseThree">
+																Danh sách sản phẩm còn bán
+															</a>
+														</div>
+														<div id="collapseThree" class="collapse show" data-parent="#accordion">
+															<div class="card-body">
+																<div class="table-responsive">
+																	<table class="table">
+																		<thead>
+																			<tr>
+																				<th>Mã sản phẩm</th>
+																				<th>Tên sản phẩm</th>
+																				<th>Ngày đăng</th>
+																				<th>Giá khởi điểm</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>1</td>
+																				<td>Son MAC chính hãng</td>
+																				<td>21-06-2018</td>
+																				<td>500.000 VNĐ</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="card">
+														<div class="card-header">
+															<a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+																Danh sách sản phẩm đã bán
+															</a>
+														</div>
+														<div id="collapseFour" class="collapse" data-parent="#accordion">
+															<div class="card-body">
+																<div class="table-responsive">
+																	<table class="table">
+																		<thead>
+																			<tr>
+																				<th>Mã sản phẩm</th>
+																				<th>Tên sản phẩm</th>
+																				<th>Ngày đăng</th>
+																				<th>Giá khởi điểm</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>1</td>
+																				<td>Son MAC chính hãng</td>
+																				<td>21-06-2018</td>
+																				<td>500.000 VNĐ</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+											<br>
+										</div>
+									</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<br>
+		<footer class="py-3 bg-dark">
+			<div class="container">
+				<p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+			</div>
+			<!-- /.container -->
+		</footer>
+
+		<!-- Modal quyen ban -->
+
+		<div class="modal fade" id="filenotiModal" tabindex="-1" role="dialog" aria-labelledby="filenotiModalLable" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="filenotiModalTitle">Thông báo</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Chỉ được tải lên 3 tệp hình ảnh. Vui lòng tải lại.
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Bootstrap core JavaScript -->
+		<script src="../vendor/jquery/jquery.min.js"></script>
+		<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="../vendor/tempusdominus/moment.js"></script>
+		<script src="../vendor/tempusdominus/tempusdominus-bootstrap-4.min.js"></script>
+		<script src="../js/datetimepicker.js"></script>
+</body>
+
+</html>

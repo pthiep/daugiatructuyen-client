@@ -14,6 +14,11 @@ $(document).ready(function () {
 		Login();
 	});
 
+	// Quan ly ban
+	$('#btnSale').on('click', function () {
+		checkRuleSale();
+	});
+
 	$('#btnExit').on('click', function () {
 		logoutUser();
 		location.href = '../index.html';
@@ -100,6 +105,31 @@ function logoutUser() {
 	updateLoginStatus(getCookie('userid'), 1);
 	cleanCookieStorage();
 	showNavbarLogin();
+}
+
+function checkRuleSale() {
+	var dataArr = {
+		userid: getCookie('userid')
+	};
+
+	var dataJS = JSON.stringify(dataArr);
+	$.ajax({
+		url: 'http://localhost:3000/users/checkrulesale',
+		type: 'POST',
+		dataType: 'json',
+		timeout: 10000,
+		contentType: 'application/json',
+		data: dataJS
+	}).done(function (data) {
+		console.log(data);
+		if (data[0].quyenban === 0) {
+			location.href = 'salemanager.html';
+		} else {
+			$('#ruleSaleModal').modal('show');
+		}
+	}).fail(function (xhr, status, err) {
+		console.log(err);
+	});
 }
 
 function updateLoginStatus(userid, status) {

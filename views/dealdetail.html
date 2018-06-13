@@ -25,7 +25,6 @@
 	<!-- Custom js -->
 	<script language="javascript" src="../vendor/socket.io/socket.io.js"></script>
 	<script language="javascript" src="../vendor/jquery/jquery.min.js"></script>
-	<script language="javascript" src="../js/smooth/smooth.js"></script>
 	<script language="javascript" src="../js/jwt.js"></script>
 	<script language="javascript" src="../js/login.js"></script>
 	<script language="javascript" src="../js/dealdetail.js"></script>
@@ -54,10 +53,10 @@
 				</ul>
 				<ul class="d-none navbar-nav ml-auto" id="navbaruser">
 					<li class="nav-item">
-						<a class="nav-link" href="#">Giỏ hàng</a>
+						<a class="nav-link" href="#">Quản lý mua</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Đấu giá của tôi</a>
+						<a class="nav-link" href="#">Quản lý bán</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsername" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -66,8 +65,6 @@
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="#">Thông tin cá nhân</a>
-							<a class="dropdown-item" href="#">Quản lý mua</a>
-							<a class="dropdown-item" href="#">Quản lý bán</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" id="btnExit" href="#">Đăng xuất</a>
 						</div>
@@ -182,7 +179,12 @@
 							<span id="endTime"></span>
 						</span>
 						<br>
-						<span class="lbEndTime">
+						<span class="lbTimeOut">
+							<b>Còn lại: </b>
+							<span id="timeOut"></span>
+						</span>
+						<br>
+						<span class="lbDesc">
 							<b>Mô tả: </b>
 							<span>
 								<p id="descrep">Here goes description consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

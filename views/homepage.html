@@ -55,11 +55,11 @@
 				</ul>
 				<ul class="d-none navbar-nav ml-auto" id="navbaruser">
 					<li class="nav-item">
-						<a class="nav-link" href="#">Giỏ hàng</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Đấu giá của tôi</a>
-					</li>
+                        <a class="nav-link" href="purchasemanager.html">Quản lý mua</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="salemanager.html" id="btnSale">Quản lý bán</a>
+                    </li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsername" role="button" data-toggle="dropdown" aria-haspopup="true"
 						    aria-expanded="false">
@@ -67,8 +67,6 @@
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="#">Thông tin cá nhân</a>
-							<a class="dropdown-item" href="#">Quản lý mua</a>
-							<a class="dropdown-item" href="#">Quản lý bán</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" id="btnExit" href="#">Đăng xuất</a>
 						</div>
@@ -245,6 +243,27 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Modal quyen ban -->
+
+	<div class="modal fade" id="ruleSaleModal" tabindex="-1" role="dialog" aria-labelledby="ruleSaleModalLable" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="ruleSaleModalTitle">Thông báo</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  Bạn không có quyền bán hàng.
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="../vendor/jquery/jquery.min.js"></script>
