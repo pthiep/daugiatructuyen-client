@@ -1,7 +1,7 @@
-$(document).ready(function () {
+var socket = io('http://localhost:3000');
 
-	var socket = io.connect('http://localhost:3000');
-	
+$(document).ready(function () {
+	checkUserLogin();
 	loadListLikeProduct();
 
 	$('#list-likeproduct-list').on('click', function () {
@@ -9,6 +9,12 @@ $(document).ready(function () {
 	});
 
 });
+
+function checkUserLogin() {
+	if (getCookie('userid') === '') {
+		location.href = 'homepage.html';
+	}
+}
 
 function loadListLikeProduct() {
 	$("#likeProductTable > tbody tr").remove();
@@ -23,7 +29,7 @@ function loadListLikeProduct() {
 			timeout: 10000,
 			contentType: 'application/json',
 			data: dataJS
-		}).done(function (data) {		
+		}).done(function (data) {		// Cần sửa lại 1 câu Query
 			var demtt = 1;	
 			data.forEach(function (it) {
 				var dataArrDetail = new Object();
