@@ -22,4 +22,5 @@ function loadCategories() {
 	}).fail(function (xhr, status, err) {
 		console.log(err);
 	});
+	
 }
