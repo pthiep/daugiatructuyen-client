@@ -387,6 +387,7 @@ function insertDescription(dealid) {
 			desciption: motamoi
 		};
 		var dataJSU = JSON.stringify(dataUpdate);
+	
 		$.ajax({
 			url: 'http://localhost:3000/deals/updatedescription',
 			type: 'POST',

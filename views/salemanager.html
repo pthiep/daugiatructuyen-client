@@ -560,6 +560,114 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal fade" id="successchitietModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+		    aria-labelledby="successchitietModalLable" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="successchitietModalTitle">Thông báo</h5>
+						<button type="button" id="closeSuccess" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Thêm mô tả thành công
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="btncloseSuccess" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="successlichsuModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+		    aria-labelledby="successlichsuModalLable" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="successlichsuModalTitle">Thông báo</h5>
+						<button type="button" id="closeSuccess" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Kick thành công người bạn muốn kick
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="btncloseSuccess" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal chi tiet -->
+		<div class="modal fade" id="chitietModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="chitietModalTitle"
+		    aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="chitietModalTitle">Cập nhật mô tả</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<label for="InputDes">
+							<b>Mô tả cũ</b>
+						</label>
+						<div id="showDesOld"></div>
+						<br>
+						<div id="idDealDes"></div>
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">Mô tả</th>
+									<th scope="col">Thời gian cập nhật</th>
+								</tr>
+							</thead>
+							<tbody id="listDescriptionEdit"></tbody>
+						</table>
+
+						<label for="InputDes">
+							<b>Thêm mô tả</b>
+						</label>
+						<textarea class="form-control" id="motaTextarea" rows="3"></textarea>
+
+					</div>
+					<div class="modal-footer" id="footerModalChiTiet"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal lich su -->
+		<div class="modal fade" id="lichsuModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="lichsuModalTitle"
+		    aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="lichsuModalTitle">Lịch sử đấu giá</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">Tên người đấu giá</th>
+									<th scope="col">Giá</th>
+									<th scope="col">Thời gian</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody id="listHistoryEdit"></tbody>
+						</table>
+
+					</div>
+					<div class="modal-footer" id="footerModalLichSu"></div>
+				</div>
+			</div>
+		</div>
 
 		<!-- Bootstrap core JavaScript -->
 		<script src="../vendor/jquery/jquery.min.js"></script>
