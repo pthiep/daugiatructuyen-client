@@ -47,7 +47,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto" id="navbarlogin">
 					<li class="nav-item">
-						<a class="nav-link" href="#">Đăng kí</a>
+						<a class="nav-link" href="#" data-toggle="modal" data-target="#signupModal">Đăng kí</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
@@ -265,10 +265,50 @@
 		</div>
 	  </div>
 
+	<!-- Modal register -->
+
+	<div class="modal fade" id="signupModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding:35px 50px;">
+					<h4>Đăng Ký</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body" style="padding:40px 50px;">
+					<form role="form">
+						<div class="form-group">
+							<label for="email">
+								<span class="glyphicon glyphicon-user"></span> Email</label>
+							<input type="email" class="form-control" id="email" placeholder="Enter email" required>
+						</div>
+						<div class="form-group">
+							<label for="pwd">
+								<span class="glyphicon glyphicon-eye-open"></span> Password</label>
+							<input type="password" class="form-control" id="pwd" placeholder="Enter password">
+						</div>
+						<div class="form-group">
+							<label for="repwd">
+								<span class="glyphicon glyphicon-eye-open"></span>Confirm Password</label>
+							<input type="password" class="form-control" id="repwd" placeholder="Enter password">
+						</div>
+						<button type="submit" class="btn btn-success btn-block" id="submitSignup">
+							<span class="glyphicon glyphicon-off"></span> Continue</button>
+						<br>
+						<small><div class="alert alert-danger" id="signup-alert" hidden></div></small>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<!-- Bootstrap core JavaScript -->
 	<script src="../vendor/jquery/jquery.min.js"></script>
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="../vendor/slick/slick.js"></script>
+	<script src="./../js/auth.js"></script>
 
 </body>
 
