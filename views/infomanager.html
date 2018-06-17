@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Quản lý mua</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Font Awesome core CSS -->
+	<link href="../vendor/fontawesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../vendor/fontawesome/css/fontawesome-all.css" rel="stylesheet">
+
+	<!-- DateTimePicker CSS -->
+	<link href="../vendor/tempusdominus/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="../css/heroic-features.css" rel="stylesheet">
+	<!-- Custom js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
+	<script language="javascript" src="../vendor/jquery/jquery.js"></script>
+
+	<script language="javascript" src="../vendor/tempusdominus/tempusdominus-bootstrap-4.min.js"></script>
+	<script language="javascript" src="../vendor/tempusdominus/moment.js"></script>
+	<script language="javascript" src="../js/jwt.js"></script>
+	<script language="javascript" src="../js/login.js"></script>
+	<script language="javascript" src="../js/md5.min.js"></script>
+	<script language="javascript" src="../js/info.js"></script>
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="../index.html">Start Bootstrap</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			    aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto" id="navbarlogin">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Đăng kí</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
+					</li>
+				</ul>
+				<ul class="d-none navbar-nav ml-auto" id="navbaruser">
+					<li class="nav-item">
+						<a class="nav-link" href="purchasemanager.html">Quản lý mua</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="salemanager.html" id="btnSale">Quản lý bán</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsername" role="button" data-toggle="dropdown" aria-haspopup="true"
+						    aria-expanded="false">
+							Dropdown
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Thông tin cá nhân</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" id="btnExit" href="#">Đăng xuất</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Categories - Search -->
+		<br>
+		<form>
+			<div class="row">
+				<div class="col-lg-2">
+					<div class="btn-group">
+						<button type="button" class="btn btn-success col-mb-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-list-ul"></i>&nbsp;&nbsp;Danh mục&nbsp;
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="#">Something else here</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-7 offset-lg-1">
+					<input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
+				</div>
+				<div class="col-lg-2">
+					<button type="submit" class="btn btn-primary col-mb-2 offset-lg-2">
+						<i class="fas fa-search"></i>&nbsp;&nbsp;Tìm kiếm&nbsp;
+					</button>
+				</div>
+			</div>
+		</form>
+		<!-- !!!! -->
+
+		<!-- Beadcrumb -->
+		<br>
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="../index.html">Trang chủ</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">Thông tin cá nhân</li>
+			</ol>
+		</nav>
+		<!-- !!!!  -->
+		<!-- Page Features -->
+
+		<div class="row">
+			<div class="col-3">
+				<div class="list-group" id="list-tab" role="tablist">
+					<a class="list-group-item list-group-item-action active" id="list-infouser-list" data-toggle="list" href="#list-infouser"
+					    role="tab" aria-controls="likeproduct">
+						Hồ sơ cá nhân
+					</a>
+					<a class="list-group-item list-group-item-action" id="list-review-list" data-toggle="list" href="#list-review" role="tab"
+					    aria-controls="review">
+						Đánh giá
+					</a>
+
+					<a class="list-group-item list-group-item-action" id="list-dealing-list" data-toggle="list" href="#list-dealing" role="tab"
+					    aria-controls="dealing">
+						Danh sách đang đấu giá
+					</a>
+
+					<a class="list-group-item list-group-item-action" id="list-dealwin-list" data-toggle="list" href="#list-dealwin" role="tab"
+					    aria-controls="dealwin">
+						Danh sách đã thắng
+					</a>
+
+					<a class="list-group-item list-group-item-action" id="list-listlike-list" data-toggle="list" href="#list-listlike" role="tab"
+					    aria-controls="messages">
+						Sản phẩm yêu thích
+					</a>
+				</div>
+			</div>
+			<div class="col-9">
+				<div class="tab-content" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="list-infouser" role="tabpanel" aria-labelledby="list-infouser-list">
+						<br>
+						<div class="form-group row">
+							<label class="col-sm-3">
+								<strong>Email: </strong>
+							</label>
+							<label class="col-sm-7">
+								<span id="emailUser"></span>
+							</label>
+							<div class="col-sm-2">
+								<span id="spanChangeEmail">
+									<h5>OK</h5>
+								</span>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-3">
+								<strong>Họ tên :</strong>
+							</label>
+							<div class="col-sm-7">
+								<span id="nameUser"></span>
+							</div>
+							<div class="col-sm-2">
+								<span id="spanChangeUserName"></span>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-3">
+								<strong>Mật khẩu :</strong>
+							</label>
+							<div class="col-sm-9">
+								<span id="spanChangePass"></span>
+							</div>
+						</div>
+						<br>
+					</div>
+
+
+
+					<div class="tab-pane fade" id="list-review" role="tabpanel" aria-labelledby="list-review-list">
+						<div class="form-group row">
+							<label class="col-sm-3">
+								<strong>Số lượt đánh giá tốt: </strong>
+							</label>
+							<label class="col-sm-7">
+								<span id="reviewGood"></span>
+							</label>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-3">
+								<strong>Tổng số lượng đánh giá: </strong>
+							</label>
+							<label class="col-sm-7">
+								<span id="sumReview"></span>
+							</label>
+						</div>
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">Người đánh giá</th>
+									<th scope="col">Đánh giá</th>
+									<th scope="col">Điểm</th>
+								</tr>
+							</thead>
+							<tbody id="listReview"></tbody>
+						</table>
+					</div>
+					<div class="tab-pane fade" id="list-dealing" role="tabpanel" aria-labelledby="list-dealing-list">
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th>Mã</th>
+									<th>Tên sản phẩm</th>
+								</tr>
+							</thead>
+							<tbody id="listDealing"></tbody>
+						</table>
+					</div>
+					<div class="tab-pane fade" id="list-dealwin" role="tabpanel" aria-labelledby="list-dealwin-list">
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th>Mã</th>
+									<th>Tên sản phẩm</th>
+								</tr>
+							</thead>
+							<tbody id="listDealWin"></tbody>
+						</table>
+					</div>
+					<div class="tab-pane fade" id="list-listlike" role="tabpanel" aria-labelledby="list-listlike-list">
+						<table class="table" id="likeProductTable">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col"></th>
+									<th style="min-width: 400px;" scope="col">
+										<center>Tên sản phẩm</center>
+									</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody id="likeProductTable"></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<br>
+		<footer class="py-3 bg-dark">
+			<div class="container">
+				<p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+			</div>
+			<!-- /.container -->
+		</footer>
+
+		<!-- Modal so luong anh -->
+
+		<div class="modal fade" id="filenotiModal" tabindex="-1" role="dialog" aria-labelledby="filenotiModalLable" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="filenotiModalTitle">Thông báo</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Chỉ được tải lên 3 tệp hình ảnh. Vui lòng tải lại.
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal success -->
+
+		<div class="modal fade" id="successChangeEmailModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+		    aria-labelledby="successModalLable" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="successModalTitle">Thông báo</h5>
+						<button type="button" id="closeSuccess" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Đã thay đổi email thành công
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="btncloseSuccess" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="successChangeNameModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+		    aria-labelledby="successChangeNameModalLable" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="successChangeNameModalTitle">Thông báo</h5>
+						<button type="button" id="closeSuccess" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Đã thay đổi tên người dùng thành công
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="btncloseSuccess" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="successChangePassModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+		    aria-labelledby="successChangePassModalLable" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="successChangePassModalTitle">Thông báo</h5>
+						<button type="button" class="close" id="btnCloseSuccessChangePassx" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Đã đổi mật khẩu thành công
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="btnCloseSuccessChangePass" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal change email -->
+		<div class="modal fade" id="changeEmailModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="changeEmailTitle"
+		    aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="changeEmailTitle">Thay đổi email</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<label class="col-sm-3 col-form-label">
+							<strong>Email mới:</strong>
+						</label>
+						<div class="col-sm-9">
+							<input type="email" class="form-control" id="newEmailChange" placeholder="Nhập email mới muốn thay đổi">
+						</div>
+					</div>
+					<div class="modal-footer" id="footerModalChangeEmail">
+						<button type="button" id="btnUpdateEmail" class="btn btn-primary">Xác nhận</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal change name -->
+		<div class="modal fade" id="changeNameUserModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+		    aria-labelledby="changeNameUserTitle" aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="changeNameUserTitle">Thay đổi tên người dùng</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<label class="col-sm-3 col-form-label">
+							<strong>Tên người dùng mới:</strong>
+						</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="newNameUserChange" placeholder="Nhập tên người dùng mới muốn thay đổi">
+						</div>
+					</div>
+					<div class="modal-footer" id="footerModalChangeName">
+						<button type="button" id="btnUpdateNameUser" class="btn btn-primary">Xác nhận</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal change pass -->
+		<div class="modal fade" id="changePassModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="changePassTitle"
+		    aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="changePassTitle">Thay đổi mật khẩu</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseChangePass">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<label class="col-sm-3 col-form-label">
+							<strong>Nhập mật khẩu cũ:</strong>
+						</label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" id="oldPass" placeholder="Nhập mật khẩu cũ">
+						</div>
+						<label class="col-sm-3 col-form-label">
+							<strong>Nhập mật mới:</strong>
+						</label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" id="newPass" placeholder="Nhập mật khẩu mới">
+						</div>
+						<label class="col-sm-3 col-form-label">
+							<strong>Nhập lại mật mới:</strong>
+						</label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" id="againNewPass" placeholder="Nhập lại mật khẩu mới">
+						</div>
+						<br>
+						<div class="d-none form-group" id="notiChangePass">
+							<div class="alert alert-danger" role="alert" id="textnotiChangePass"></div>
+						</div>
+					</div>
+					<div class="modal-footer" id="footerModalChangePass">
+						<button type="button" id="btnUpdatePass" class="btn btn-primary">Xác nhận</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Modal danh gia -->
+		<div class="modal fade" id="danhgiaModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="danhgiaModalTitle"
+		    aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="danhgiaModalTitle">Đánh giá người dùng</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group row">
+							<label for="exampleFormControlTextarea1">&nbsp;&nbsp;&nbsp;Người mua: </label>
+							<label for="exampleFormControlTextarea1">&nbsp;
+								<span id="userpur"></span>
+							</label>
+							<label for="exampleFormControlTextarea1">&nbsp;&nbsp;
+								<i class="fas fa-thumbs-up"></i>&nbsp;
+								<span id="numlike"></span>
+							</label>
+							<label for="exampleFormControlTextarea1">&nbsp;&nbsp;
+								<i class="fas fa-thumbs-down"></i>&nbsp;
+								<span id="numdislike"></span>
+							</label>
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1">Đánh giá:</label>
+							<select class="custom-select custom-select-lg mb-3" id="statusReview">
+								<option value="0">+1</option>
+								<option value="1">-1</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1">Nhận xét:</label>
+							<textarea class="form-control" id="reviewText" rows="3"></textarea>
+						</div>
+					</div>
+					<div class="modal-footer" id="footerModalDanhgia"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Bootstrap core JavaScript -->
+		<script src="../vendor/jquery/jquery.min.js"></script>
+		<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="../vendor/tempusdominus/moment.js"></script>
+		<script src="../vendor/tempusdominus/tempusdominus-bootstrap-4.min.js"></script>
+		<script src="../js/datetimepicker.js"></script>
+</body>
+
+</html>

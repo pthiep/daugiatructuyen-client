@@ -1,7 +1,7 @@
 var postRegister = () => {
-    let email = $('#email').val()
-    let password = $('#pwd').val()
-    let repassword = $('#repwd').val()
+    var email = $('#email').val()
+    var password = $('#pwd').val()
+    var repassword = $('#repwd').val()
 
     if(email == '' || password == '' || repassword == '3')
         return alertMessage('Vui lòng nhập đủ thông tin')

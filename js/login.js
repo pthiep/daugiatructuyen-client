@@ -38,7 +38,7 @@ function Login() {
 	}
 
 	var emailLogin = $(document.getElementById('loginEmail')).val();
-	var passLogin = $(document.getElementById('loginPassword')).val();
+	var passLogin = md5($(document.getElementById('loginPassword')).val());
 
 	if (emailLogin !== '' && passLogin !== '') {
 		var dataArr = {
@@ -121,7 +121,6 @@ function checkRuleSale() {
 		contentType: 'application/json',
 		data: dataJS
 	}).done(function (data) {
-		console.log(data);
 		if (data[0].quyenban === 0) {
 			location.href = 'salemanager.html';
 		} else {
@@ -168,10 +167,6 @@ function cleanCookieStorage() {
 }
 
 function showNavbar(check) {
-	// navbar login
-	var navbarlogin = document.getElementById('navbarlogin');
-	var navbaruser = document.getElementById('navbaruser');
-
 	if (check == false) {
 		showNavbarLogin();
 	} else {
