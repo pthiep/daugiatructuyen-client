@@ -34,7 +34,7 @@
 	<![endif]-->
 	<script language="javascript" src="../vendor/jquery/jquery.min.js"></script>
 	<script language="javascript" src="../js/login.js"></script>
-	<script language="javascript" src="../js/index.js"></script>
+	<script language="javascript" src="../js/category.js"></script>
 
 </head>
 
@@ -95,46 +95,125 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Danh sách yêu cầu bán</h1>
+					<h1 class="page-header">Danh sách danh mục</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
+			<!-- /.row -->
+
+			<div class="row">
+				<div class="form-group row">
+					<label for="name" class="col-sm-2 col-form-label">Tên danh mục</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="nameCate" value="" placeholder="Nhập tên danh mục">
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-success" id="btnAddCate">Thêm danh mục</button>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-danger" id="signup-alert" hidden></div>
+			<br>
+
+			<!-- /.row -->
 			<div class="row">
 
 				<table class="table">
 					<thead class="thead-light">
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">Tên người dùng</th>
-							<th scope="col">Thời gian yêu cầu</th>
+							<th scope="col">Tên danh mục</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
-					<tbody id="tbListReq"></tbody>
+					<tbody id="tbListCate"></tbody>
 				</table>
 
 			</div>
+			<!-- /.row -->
 		</div>
 		<!-- /#page-wrapper -->
 
 	</div>
 	<!-- /#wrapper -->
 
-	<div class="modal fade" id="successReqModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="successReqModalLable"
+	<div class="modal fade" id="successAddModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="successAddModalLable"
 	    aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="successReqModalTitle">Thông báo</h5>
-					<button type="button" class="close" id="btnCloseSuccessReqx" data-dismiss="modal" aria-label="Close">
+					<h5 class="modal-title" id="successAddModalTitle">Thông báo</h5>
+					<button type="button" class="close" id="btnCloseSuccessAddx" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					Duyệt yêu cầu thành công
+					Đã thêm danh mục
 				</div>
 				<div class="modal-footer">
-					<button type="button" id="btnCloseSuccessReq" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+					<button type="button" id="btnCloseSuccessAdd" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="successDelModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="successDelModalLable"
+	    aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="successDelModalTitle">Thông báo</h5>
+					<button type="button" class="close" id="btnCloseSuccessDelx" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					Đã xóa danh mục
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="btnCloseSuccessDel" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="successEditModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="successEditModalLable"
+	    aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="successEditModalTitle">Thông báo</h5>
+					<button type="button" class="close" id="btnCloseSuccessEditx" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					Đã sửa danh mục
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="btnCloseSuccessEdit" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="EditModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="EditModalLable"
+	    aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="EditModalTitle"><b>Cập nhật tên danh mục</b></h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<span id="bEdit"></span>
+				</div>
+				<div class="modal-footer">
+					<span id="cEdit"></span>
+					<button type="button" class="btn btn-success" id="btnUpdate">Cập nhật</button>
 				</div>
 			</div>
 		</div>
