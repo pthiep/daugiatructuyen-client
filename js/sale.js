@@ -243,7 +243,16 @@ function loadModalLichsu(dealid) {
 		contentType: 'application/json',
 		data: dataJS
 	}).done(function (data) {
+
+		var dem = 1;
 		data.forEach(element => {
+			var btnKick = '';
+			if (dem === 1) {
+				btnKick = '<button type="button" class="btn btn-danger" onclick="kickUser(' + element.manguoidung +
+					', ' + dealid + ',' + element.giadaugia + ')">KICK</button>';
+			} else {
+				btnKick = '';
+			}
 			var datetime = new Date(element.thoigiandaugia);
 			var time = datetime.toLocaleString("en-US");
 			$(document.getElementById('listHistoryEdit')).append(
@@ -251,10 +260,10 @@ function loadModalLichsu(dealid) {
 				'<td style="min-width: 250px;">' + element.tennguoidung + '</td>' +
 				'<td>' + element.giadaugia + '</td>' +
 				'<td>' + time + '</td>' +
-				'<td><button type="button" class="btn btn-danger" onclick="kickUser(' + element.manguoidung +
-				', ' + dealid + ',' + element.giadaugia + ')">KICK</button></td>' +
+				'<td>' + btnKick + '</td>' +
 				'</tr>'
 			);
+			dem++;
 		});
 		$(document.getElementById('footerModalLichSu')).append(
 			'<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>'
@@ -581,7 +590,7 @@ function reviewuser() {
 		$(document.getElementById('btnReviewModal')).removeClass('btn-success');
 		$(document.getElementById('btnReviewModal')).addClass('btn-secondary');
 		$(document.getElementById('btnReviewModal')).text('Đã đánh giá');
-		
+
 	}).fail(function (xhr, status, err) {
 		console.log(err);
 	});

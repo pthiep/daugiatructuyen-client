@@ -8,7 +8,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Tìm kiếm</title>
+	<title>Chi tiết sản phảm ( Hiện tên SP )</title>
 
 	<!-- Bootstrap core CSS -->
 	<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,9 +28,7 @@
 	<script language="javascript" src="../js/jwt.js"></script>
 	<script language="javascript" src="../js/login.js"></script>
 	<script language="javascript" src="../js/category.js"></script>
-	<script language="javascript" src="../js/search.js"></script>
-	<script language="javascript" src="../js/auth.js"></script>
-	<script language="javascript" src="../js/md5.min.js"></script>
+	<script language="javascript" src="../js/infouser.js"></script>
 
 </head>
 
@@ -39,7 +37,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="../index.html">Đấu giá trực tuyến</a>
+			<a class="navbar-brand" href="../index.html">Start Bootstrap</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
 			    aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -47,7 +45,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto" id="navbarlogin">
 					<li class="nav-item">
-						<a class="nav-link" href="#" data-toggle="modal" data-target="#signupModal">Đăng kí</a>
+						<a class="nav-link" href="#">Đăng kí</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
@@ -55,7 +53,10 @@
 				</ul>
 				<ul class="d-none navbar-nav ml-auto" id="navbaruser">
 					<li class="nav-item">
-						<a class="nav-link" id="btnSale">Quản lý bán</a>
+						<a class="nav-link" href="#">Quản lý mua</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Quản lý bán</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsername" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -63,7 +64,7 @@
 							Dropdown
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="infomanager.html">Thông tin cá nhân</a>
+							<a class="dropdown-item" href="#">Thông tin cá nhân</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" id="btnExit" href="#">Đăng xuất</a>
 						</div>
@@ -78,25 +79,27 @@
 
 		<!-- Categories - Search -->
 		<br>
-		<div class="row">
-			<div class="col-lg-2">
-				<div class="btn-group">
-					<button type="button" class="btn btn-success col-mb-2 dropdown-toggle" id="btnLoadCategory" data-toggle="dropdown" aria-haspopup="true"
-					    aria-expanded="false">
-						<i class="fas fa-list-ul"></i>&nbsp;&nbsp;Danh mục&nbsp;
-					</button>
-					<div class="dropdown-menu" id="listCategory">
+		<form>
+			<div class="row">
+				<div class="col-lg-2">
+					<div class="btn-group">
+						<button type="button" class="btn btn-success col-mb-2 dropdown-toggle" id="btnLoadCategory" data-toggle="dropdown" aria-haspopup="true"
+						    aria-expanded="false">
+							<i class="fas fa-list-ul"></i>&nbsp;&nbsp;Danh mục&nbsp;
+						</button>
+						<div class="dropdown-menu" id="listCategory">
+						</div>
 					</div>
 				</div>
+				<div class="col-lg-7 offset-lg-1">
+					<input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
+				</div>
+				<div class="col-lg-2">
+					<button type="submit" class="btn btn-primary col-mb-2 offset-lg-2">
+						<i class="fas fa-search"></i>&nbsp;&nbsp;Tìm kiếm&nbsp;</button>
+				</div>
 			</div>
-			<div class="col-lg-7 offset-lg-1">
-				<input type="text" class="form-control" id="searchString" placeholder="Tìm kiếm sản phẩm">
-			</div>
-			<div class="col-lg-2">
-				<button type="submit" class="btn btn-primary col-mb-2 offset-lg-2" id="btnSearch">
-					<i class="fas fa-search"></i>&nbsp;&nbsp;Tìm kiếm&nbsp;</button>
-			</div>
-		</div>
+		</form>
 		<!-- !!!! -->
 
 		<!-- Beadcrumb -->
@@ -106,26 +109,53 @@
 				<li class="breadcrumb-item">
 					<a href="../index.html">Trang chủ</a>
 				</li>
-				<li class="breadcrumb-item active" aria-current="page">Tìm kiếm</li>
+				<li class="breadcrumb-item active" aria-current="page">Thông tin người dùng</li>
 			</ol>
 		</nav>
 		<!-- !!!!  -->
 
 		<!-- Page Features -->
 
-		<div id="listSearch"></div>
-
-		<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
-				<div id="pagesid"></div>
-			</ul>
-		</nav>
+		<div class="form-group row">
+			<label class="col-sm-3">
+				<strong>Họ tên :</strong>
+			</label>
+			<div class="col-sm-7">
+				<span id="nameUser"></span>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-3">
+				<strong>Số lượt đánh giá tốt: </strong>
+			</label>
+			<label class="col-sm-7">
+				<span id="reviewGood"></span>
+			</label>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-3">
+				<strong>Tổng số lượng đánh giá: </strong>
+			</label>
+			<label class="col-sm-7">
+				<span id="sumReview"></span>
+			</label>
+		</div>
+		<table class="table">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Người đánh giá</th>
+					<th scope="col">Đánh giá</th>
+					<th scope="col">Điểm</th>
+				</tr>
+			</thead>
+			<tbody id="listReview"></tbody>
+		</table>
 
 		<!-- Footer -->
 		<br>
 		<footer class="py-5 bg-dark">
 			<div class="container">
-				<p class="m-0 text-center text-white">Copyright &copy; 15CK</p>
+				<p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
 			</div>
 			<!-- /.container -->
 		</footer>
@@ -199,6 +229,9 @@
 							<label for="inputPassword" class="col-sm-3 col-form-label">Mật khẩu</label>
 							<div class="col-sm-9">
 								<input type="password" class="form-control" id="loginPassword" onkeypress="return enterLogin(event)" placeholder="Nhập mật khẩu">
+								<small id="passwordHelpInline" class="form-text text-muted">
+									Must be 8-20 characters long.
+								</small>
 							</div>
 						</div>
 					</form>
@@ -215,71 +248,6 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal" id="btncloseLogin">Đóng</button>
 					<button type="submit" class="btn btn-primary" id="btnLogin">Đăng nhập</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modal register -->
-
-	<div class="modal fade" id="signupModal" role="dialog">
-		<div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4>Đăng Ký</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<div class="modal-body" style="padding:40px 50px;">
-					<form role="form">
-						<div class="form-group">
-							<label for="email">
-								<span class="glyphicon glyphicon-user"></span> Email</label>
-							<input type="email" class="form-control" id="email" placeholder="Nhập email đăng ký" required>
-						</div>
-						<div class="form-group">
-							<label for="name">
-								<span class="glyphicon glyphicon-user"></span> Họ tên</label>
-							<input type="text" class="form-control" id="name" placeholder="Nhập họ và tên" required>
-						</div>
-						<div class="form-group">
-							<label for="pwd">
-								<span class="glyphicon glyphicon-eye-open"></span>Mật khẩu</label>
-							<input type="password" class="form-control" id="pwd" placeholder="Nhập mật khẩu">
-						</div>
-						<div class="form-group">
-							<label for="repwd">
-								<span class="glyphicon glyphicon-eye-open"></span>Nhập lại mật khẩu</label>
-							<input type="password" class="form-control" id="repwd" placeholder="Nhập mật khẩu">
-						</div>
-						<button type="submit" class="btn btn-success btn-block" id="submitSignup">
-							<span class="glyphicon glyphicon-off"></span>Đăng ký</button>
-						<br>
-						<div class="alert alert-danger" id="signup-alert" hidden></div>
-					</form>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-
-	<div class="modal fade" id="ruleSaleModal" tabindex="-1" role="dialog" aria-labelledby="ruleSaleModalLable" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="ruleSaleModalTitle">Thông báo</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					Bạn không có quyền bán hàng.<br>
-					<span id="regSale"></span>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
 				</div>
 			</div>
 		</div>

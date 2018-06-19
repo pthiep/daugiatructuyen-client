@@ -1,9 +1,10 @@
 var postRegister = () => {
-    var email = $('#email').val()
-    var password = $('#pwd').val()
-    var repassword = $('#repwd').val()
+	var email = $('#email').val();
+	var name = $('#name').val();
+    var password = md5($('#pwd').val());
+    var repassword = $('#repwd').val();
 
-    if(email == '' || password == '' || repassword == '3')
+    if(email === '' || name === '' || password === '' || repassword === '3')
         return alertMessage('Vui lòng nhập đủ thông tin')
     if(password.length < 6)
         return alertMessage('Mật khẩu dài hơn 6 ký tự')
@@ -14,17 +15,19 @@ var postRegister = () => {
     $.ajax({
         url: 'http://localhost:3000/users/signup',
         type: 'POST',
-        data: {email,password}
+        data: {email,password,name}
     }).done(res => {
+		console.log(res);
         if(res.msg === 'OK'){
-            $('#signupModal').hide()
-            alert('Đăng ký thành công!')
+			$('#signupModal').hide();
+			$('#successRegModal').modal('show');
         }
         else{
             alertMessage('Email đã tồn tại!!')
         }
-    }).fail(err => alertMessage('Can not connect to server, try again later!'))
-    
+    }).fail(function (xhr, status, err) {
+		console.log(err);
+	});
 }
 
 $('#submitSignup').on('click', (e) => {
@@ -36,3 +39,11 @@ var alertMessage = (message) => {
     $('#signup-alert').html(message)
     $('#signup-alert').prop('hidden',false)
 }
+
+$('#btnCloseSuccessReg').on('click', function () {
+	location.href = '../index.html';
+});
+
+$('#btnCloseSuccessReg').on('click', function () {
+	location.href = '../index.html';
+});

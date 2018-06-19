@@ -29,6 +29,8 @@
 	<script language="javascript" src="../js/login.js"></script>
 	<script language="javascript" src="../js/dealdetail.js"></script>
 	<script language="javascript" src="../js/category.js"></script>
+	<script language="javascript" src="../js/md5.min.js"></script>
+	<script language="javascript" src="../js/search.js"></script>
 
 </head>
 
@@ -37,7 +39,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="../index.html">Start Bootstrap</a>
+			<a class="navbar-brand" href="../index.html">Đấu giá trực tuyến</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
 			    aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -45,7 +47,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto" id="navbarlogin">
 					<li class="nav-item">
-						<a class="nav-link" href="#">Đăng kí</a>
+						<a class="nav-link" href="#" data-toggle="modal" data-target="#signupModal">Đăng kí</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
@@ -53,10 +55,7 @@
 				</ul>
 				<ul class="d-none navbar-nav ml-auto" id="navbaruser">
 					<li class="nav-item">
-						<a class="nav-link" href="#">Quản lý mua</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Quản lý bán</a>
+						<a class="nav-link" id="btnSale">Quản lý bán</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsername" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -64,7 +63,7 @@
 							Dropdown
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Thông tin cá nhân</a>
+							<a class="dropdown-item" href="infomanager.html">Thông tin cá nhân</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" id="btnExit" href="#">Đăng xuất</a>
 						</div>
@@ -79,27 +78,25 @@
 
 		<!-- Categories - Search -->
 		<br>
-		<form>
-			<div class="row">
-				<div class="col-lg-2">
-					<div class="btn-group">
-						<button type="button" class="btn btn-success col-mb-2 dropdown-toggle" id="btnLoadCategory" data-toggle="dropdown" aria-haspopup="true"
-						    aria-expanded="false">
-							<i class="fas fa-list-ul"></i>&nbsp;&nbsp;Danh mục&nbsp;
-						</button>
-						<div class="dropdown-menu" id="listCategory">
-						</div>
+		<div class="row">
+			<div class="col-lg-2">
+				<div class="btn-group">
+					<button type="button" class="btn btn-success col-mb-2 dropdown-toggle" id="btnLoadCategory" data-toggle="dropdown" aria-haspopup="true"
+					    aria-expanded="false">
+						<i class="fas fa-list-ul"></i>&nbsp;&nbsp;Danh mục&nbsp;
+					</button>
+					<div class="dropdown-menu" id="listCategory">
 					</div>
 				</div>
-				<div class="col-lg-7 offset-lg-1">
-					<input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
-				</div>
-				<div class="col-lg-2">
-					<button type="submit" class="btn btn-primary col-mb-2 offset-lg-2">
-						<i class="fas fa-search"></i>&nbsp;&nbsp;Tìm kiếm&nbsp;</button>
-				</div>
 			</div>
-		</form>
+			<div class="col-lg-7 offset-lg-1">
+				<input type="text" class="form-control" id="searchString" placeholder="Tìm kiếm sản phẩm">
+			</div>
+			<div class="col-lg-2">
+				<button type="submit" class="btn btn-primary col-mb-2 offset-lg-2" id="btnSearch">
+					<i class="fas fa-search"></i>&nbsp;&nbsp;Tìm kiếm&nbsp;</button>
+			</div>
+		</div>
 		<!-- !!!! -->
 
 		<!-- Beadcrumb -->
@@ -121,16 +118,25 @@
 		<div class="card">
 			<div class="row">
 				<aside class="col-sm-5 border-right">
-					<article class="gallery-wrap"> 
+					<article class="gallery-wrap">
 						<div class="img-big-wrap">
-						  <div> <a href="#"><img src="" id="slide_index"></a></div>
-						</div> <!-- slider-product.// -->
+							<div>
+								<a href="#">
+									<img src="" id="slide_index">
+								</a>
+							</div>
+						</div>
+						<!-- slider-product.// -->
 						<div class="img-small-wrap">
-						  <div class="item-gallery"> <img src="../img/laroche.jpg" id="slide_1"> </div>
-						  <div class="item-gallery"> <img src="../img/img_deal/deal_1_2.jpg" id="slide_2"> </div>
-						  <div class="item-gallery"> <img src="../img/img_deal/deal_1_3.jpg" id="slide_3"> </div>
-						  </div> <!-- slider-nav.// -->
-						</article>
+							<div class="item-gallery">
+								<img src="" id="slide_1"> </div>
+							<div class="item-gallery">
+								<img src="" id="slide_2"> </div>
+							<div class="item-gallery">
+								<img src="" id="slide_3"> </div>
+						</div>
+						<!-- slider-nav.// -->
+					</article>
 					<!-- gallery-wrap .end// -->
 				</aside>
 				<aside class="col-sm-7">
@@ -143,30 +149,24 @@
 						<h3 class="title mb-3" id="lbProductName"></h3>
 						<h5 class="price">Giá:
 							<span id="lbPrice"></span>
-							<span>VND</span>
 						</h5>
 
 						<h5 class="price">Mua ngay:
 							<span id="lbPriceNow"></span>
-							<span id="lbUnitNow">VND</span>
 						</h5>
 
 						<span class="lbPurchaser">
 							<b>Người bán: </b>
 							<span>
 								<a href="#" id="SalerName"></a>
-							</span>&nbsp;(
-							<i class="far fa-thumbs-up"></i>&nbsp;
-							<span id="reviewSaler"></span>)
+							</span>
 						</span>
 						<br>
 						<span class="lbDealer">
 							<b>Đấu giá cao nhất: </b>
 							<span>
 								<a href="#" id="PurchaserName"></a>
-							</span>&nbsp;(
-							<i class="far fa-thumbs-up"></i>&nbsp;
-							<span id="reviewPurchaser"></span>)
+							</span>
 						</span>
 						<br>
 						<span class="lbCreateTime">
@@ -187,8 +187,7 @@
 						<span class="lbDesc">
 							<b>Mô tả: </b>
 							<span>
-								<p id="descrep">Here goes description consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-									Ut enim ad minim veniam, quis nostrud exercitation ullamco </p>
+								<p id="descrep"></p>
 							</span>
 							<hr>
 						</span>
@@ -203,6 +202,9 @@
 						</div>
 						<div class="d-none alert alert-danger" role="alert" id="notificationTimeOut">
 							Hết thời gian đấu giá
+						</div>
+						<div class="d-none alert alert-danger" role="alert" id="notificationReview">
+							Đánh giá của bạn không đủ để ra giá
 						</div>
 
 						<div class="row">
@@ -228,9 +230,9 @@
 						<a href="#" class="btn btn-lg btn-outline-primary text-uppercase" id="btnBuyNow">
 							<i class="fas fa-shopping-cart"></i>
 							Mua ngay</a>
-						<a href="#" class="btn btn-lg btn-outline-danger text-uppercase">
-							<i class="fas fa-heart"></i>
-						</a>
+
+						<span id="bnLike"></span>
+
 						<br>
 						<br>
 
@@ -242,18 +244,7 @@
 			<!-- row.// -->
 		</div>
 		<br>
-		<table class="table" id="dealProductTable">
-			<thead class="thead-light">
-				<tr>
-					<th scope="col"></th>
-					<th scope="col">Thời gian đấu giá</th>
-					<th scope="col">Tên người đấu giá</th>
-					<th scope="col">Giá đấu giá</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+		<span id="shTB"></span>
 
 		<!-- Footer -->
 		<br>
@@ -270,6 +261,46 @@
 	<!-- /.container -->
 
 	<!-- Modal -->
+
+	<div class="modal fade" id="failedAddLikeModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+	    aria-labelledby="failedAddLikeModalLable" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="failedAddLikeModalTitle">Thông báo</h5>
+					<button type="button" class="close" id="btnCloseSuccessChangePassx" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					Đấu giá đã có trong danh sách yêu thích
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="btnCloseSuccessChangePass" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="successAddLikeModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+	    aria-labelledby="successAddLikeModalLable" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="successAddLikeModalTitle">Thông báo</h5>
+					<button type="button" class="close" id="btnCloseSuccessChangePassx" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					Đã thêm đấu giá thành công vào danh sách yêu thích
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="btnCloseSuccessChangePass" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Modal login -->
 	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -293,9 +324,6 @@
 							<label for="inputPassword" class="col-sm-3 col-form-label">Mật khẩu</label>
 							<div class="col-sm-9">
 								<input type="password" class="form-control" id="loginPassword" onkeypress="return enterLogin(event)" placeholder="Nhập mật khẩu">
-								<small id="passwordHelpInline" class="form-text text-muted">
-									Must be 8-20 characters long.
-								</small>
 							</div>
 						</div>
 					</form>

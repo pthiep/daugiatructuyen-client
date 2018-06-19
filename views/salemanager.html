@@ -8,7 +8,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Quản lý mua</title>
+	<title>Quản lý bán</title>
 
 	<!-- Bootstrap core CSS -->
 	<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,10 +28,13 @@
 
 	<script language="javascript" src="../vendor/tempusdominus/tempusdominus-bootstrap-4.min.js"></script>
 	<script language="javascript" src="../vendor/tempusdominus/moment.js"></script>
+	<script language="javascript" src="../vendor/socket.io/socket.io.js"></script>
 	<script language="javascript" src="../js/jwt.js"></script>
 	<script language="javascript" src="../js/login.js"></script>
 	<script language="javascript" src="../js/sale.js"></script>
 	<script language="javascript" src="../js/datetimepicker.js"></script>
+	<script language="javascript" src="../js/category.js"></script>
+	<script language="javascript" src="../js/search.js"></script>
 </head>
 
 <body>
@@ -39,7 +42,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="../index.html">Start Bootstrap</a>
+			<a class="navbar-brand" href="../index.html">Đấu giá trực tuyến</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
 			    aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -47,7 +50,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto" id="navbarlogin">
 					<li class="nav-item">
-						<a class="nav-link" href="#">Đăng kí</a>
+						<a class="nav-link" href="#" data-toggle="modal" data-target="#signupModal">Đăng kí</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
@@ -55,10 +58,7 @@
 				</ul>
 				<ul class="d-none navbar-nav ml-auto" id="navbaruser">
 					<li class="nav-item">
-						<a class="nav-link" href="purchasemanager.html">Quản lý mua</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="salemanager.html" id="btnSale">Quản lý bán</a>
+						<a class="nav-link" id="btnSale">Quản lý bán</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsername" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -66,7 +66,7 @@
 							Dropdown
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Thông tin cá nhân</a>
+							<a class="dropdown-item" href="infomanager.html">Thông tin cá nhân</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" id="btnExit" href="#">Đăng xuất</a>
 						</div>
@@ -81,30 +81,23 @@
 
 		<!-- Categories - Search -->
 		<br>
-		<form>
-			<div class="row">
-				<div class="col-lg-2">
-					<div class="btn-group">
-						<button type="button" class="btn btn-success col-mb-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="fas fa-list-ul"></i>&nbsp;&nbsp;Danh mục&nbsp;
-						</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<a class="dropdown-item" href="#">Something else here</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-7 offset-lg-1">
-					<input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
-				</div>
-				<div class="col-lg-2">
-					<button type="submit" class="btn btn-primary col-mb-2 offset-lg-2">
-						<i class="fas fa-search"></i>&nbsp;&nbsp;Tìm kiếm&nbsp;
+		<div class="row">
+			<div class="col-lg-2">
+				<div class="btn-group">
+					<button type="button" class="btn btn-success col-mb-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fas fa-list-ul"></i>&nbsp;&nbsp;Danh mục&nbsp;
 					</button>
+					<div class="dropdown-menu" id="listCategory"></div>
 				</div>
 			</div>
-		</form>
+			<div class="col-lg-7 offset-lg-1">
+				<input type="text" class="form-control" id="searchString" placeholder="Tìm kiếm sản phẩm">
+			</div>
+			<div class="col-lg-2">
+				<button type="submit" class="btn btn-primary col-mb-2 offset-lg-2" id="btnSearch">
+					<i class="fas fa-search"></i>&nbsp;&nbsp;Tìm kiếm&nbsp;</button>
+			</div>
+		</div>
 		<!-- !!!! -->
 
 		<!-- Beadcrumb -->
@@ -347,7 +340,7 @@
 		<br>
 		<footer class="py-3 bg-dark">
 			<div class="container">
-				<p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+				<p class="m-0 text-center text-white">Copyright &copy; 15CK</p>
 			</div>
 			<!-- /.container -->
 		</footer>
@@ -538,11 +531,17 @@
 					<div class="modal-body">
 						<div class="form-group row">
 							<label for="exampleFormControlTextarea1">&nbsp;&nbsp;&nbsp;Người mua: </label>
-							<label for="exampleFormControlTextarea1">&nbsp;<span id="userpur"></span></label>
+							<label for="exampleFormControlTextarea1">&nbsp;
+								<span id="userpur"></span>
+							</label>
 							<label for="exampleFormControlTextarea1">&nbsp;&nbsp;
-								<i class="fas fa-thumbs-up"></i>&nbsp;<span id="numlike"></span></label>
+								<i class="fas fa-thumbs-up"></i>&nbsp;
+								<span id="numlike"></span>
+							</label>
 							<label for="exampleFormControlTextarea1">&nbsp;&nbsp;
-								<i class="fas fa-thumbs-down"></i>&nbsp;<span id="numdislike"></span></label>
+								<i class="fas fa-thumbs-down"></i>&nbsp;
+								<span id="numdislike"></span>
+							</label>
 						</div>
 						<div class="form-group">
 							<label for="exampleFormControlTextarea1">Đánh giá:</label>

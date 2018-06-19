@@ -23,7 +23,6 @@ $(document).ready(function () {
 		logoutUser();
 		location.href = '../index.html';
 	});
-
 });
 
 function Login() {
@@ -108,6 +107,7 @@ function logoutUser() {
 }
 
 function checkRuleSale() {
+	console.log('O');
 	var dataArr = {
 		userid: getCookie('userid')
 	};
@@ -122,10 +122,58 @@ function checkRuleSale() {
 		data: dataJS
 	}).done(function (data) {
 		if (data[0].quyenban === 0) {
-			location.href = 'salemanager.html';
+			location.href = '../views/salemanager.html';
 		} else {
-			$('#ruleSaleModal').modal('show');
+			var dataArr = {
+				userid: getCookie('userid')
+			};
+			
+			var dataJS = JSON.stringify(dataArr);
+			$.ajax({
+				url: 'http://localhost:3000/users/checkregsalerule',
+				type: 'POST',
+				dataType: 'json',
+				timeout: 10000,
+				contentType: 'application/json',
+				data: dataJS
+			}).done(function (data) {
+				console.log(data);
+				$(document.getElementById('regSale')).text('');
+				if (Object.keys(data).length !== 0){
+					$(document.getElementById('regSale')).append(
+						'Bạn đã đăng kí bán, đợi quản trị duyệt yêu cầu'
+					);
+				} else {
+					$(document.getElementById('regSale')).append(
+						'<button type="button" id="btnRegSale" onclick="regRuleSale()" class="btn btn-primary">Đăng kí bán trong 7 ngày</button>'
+					);
+				}
+
+				$('#ruleSaleModal').modal('show');
+			}).fail(function (xhr, status, err) {
+				console.log(err);
+			});
 		}
+	}).fail(function (xhr, status, err) {
+		console.log(err);
+	});
+}
+
+function regRuleSale() {
+	var dataArr = {
+		userid: getCookie('userid')
+	};
+	
+	var dataJS = JSON.stringify(dataArr);
+	$.ajax({
+		url: 'http://localhost:3000/users/regsalerule',
+		type: 'POST',
+		dataType: 'json',
+		timeout: 10000,
+		contentType: 'application/json',
+		data: dataJS
+	}).done(function (data) {
+		$('#ruleSaleModal').modal('hide');
 	}).fail(function (xhr, status, err) {
 		console.log(err);
 	});

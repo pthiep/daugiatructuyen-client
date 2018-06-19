@@ -15,11 +15,11 @@ function loadCategories() {
 		timeout: 10000
 	}).done(function (data) {
 		$(document.getElementById('listCategory')).append(
-			'<a class="dropdown-item" href="search.html?type=1&id=all">Tất cả</a>'
+			'<a class="dropdown-item" href="search.html?type=1&id=all&page=1">Tất cả</a>'
 		);
 		data.forEach(element => {
 			$(document.getElementById('listCategory')).append(
-				'<a class="dropdown-item" href="search.html?type=1&id=' + element.madanhmuc + '">' + element.tendanhmuc + '</a>'
+				'<a class="dropdown-item" href="search.html?type=1&id=' + element.madanhmuc + '&page=1">' + element.tendanhmuc + '</a>'
 			);
 		});
 	}).fail(function (xhr, status, err) {
