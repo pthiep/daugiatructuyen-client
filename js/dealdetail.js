@@ -16,7 +16,7 @@ socket.on('time_ostartupdatetime', function (data) {
 			// alert('ID : ' + socket.id);
 			getProductDetail();
 		});
-		
+
 		socket.on('update_dealhistory', function (data) {
 			cleanHistoryTable();
 			getDealHistory();
@@ -45,7 +45,7 @@ $(document).ready(function () {
 	}
 
 	$('#btnDeal').on('click', function () {
-		Deal();
+		XacnhanDeal();
 	});
 
 	$('#btnBuyNow').on('click', function () {
@@ -90,116 +90,140 @@ $(document).ready(function () {
 
 });
 
+function XacnhanDeal() {
+	$('#XacnhanModalCenter').modal('show');
+}
+
 function Deal() {
+	$('#XacnhanModalCenter').modal('hide');
 	var userid = getCookie('userid');
+	var dealid = getParameter('dealid', location.href);
 	var dataArr = {
-		userid: userid
+		userid: userid,
+		dealid: dealid
 	};
 
 	var dataJS = JSON.stringify(dataArr);
-	console.log(dataJS);
+
 	$.ajax({
-		url: 'http://localhost:3000/users/getnumreviewuser',
+		url: 'http://localhost:3000/users/checkuserban',
 		type: 'POST',
 		dataType: 'json',
 		timeout: 10000,
 		contentType: 'application/json',
 		data: dataJS
 	}).done(function (data) {
-
-		var per = 0;
-
 		if (Object.keys(data).length === 0) {
-			per = 100;
-		} else {
-			per = (data[0].soluongthich / data[0].tongdanhgia) * 100;
-		}
 
-		if (per >= 80) {
+			$.ajax({
+				url: 'http://localhost:3000/users/getnumreviewuser',
+				type: 'POST',
+				dataType: 'json',
+				timeout: 10000,
+				contentType: 'application/json',
+				data: dataJS
+			}).done(function (data) {
 
-			hiddennotificationHighPrice();
-			hiddennotificationLogin();
-			hiddennotificationSuccessDeal();
-			hiddennotificationReview();
+				var per = 0;
 
-			var pricedeal = $(document.getElementById('tbDealPrice')).val();
-			var dealid = $(document.getElementById('dealid')).val();
-			var dealprice = $(document.getElementById('tbDealPrice')).val();
-			var userid = getCookie('userid');
+				if (Object.keys(data).length === 0) {
+					per = 100;
+				} else {
+					per = (data[0].soluongthich / data[0].tongdanhgia) * 100;
+				}
 
-			if (getCookie('userid') !== '') {
-				var dataArr = {
-					dealid: dealid
-				};
-				var dataJS = JSON.stringify(dataArr);
-				$.ajax({
-					url: 'http://localhost:3000/deals/dealprice',
-					type: 'POST',
-					dataType: 'json',
-					timeout: 10000,
-					contentType: 'application/json',
-					data: dataJS
-				}).done(function (data) {
-					if (data[0].giacaonhat >= parseInt(covertVNDtoInt(pricedeal))) {
-						shownotificationHighPrice();
-					} else {
+				if (per >= 80) {
+
+					hiddennotificationHighPrice();
+					hiddennotificationLogin();
+					hiddennotificationSuccessDeal();
+					hiddennotificationReview();
+					hiddennotificationKick();
+
+					var pricedeal = $(document.getElementById('tbDealPrice')).val();
+					var dealid = $(document.getElementById('dealid')).val();
+					var dealprice = $(document.getElementById('tbDealPrice')).val();
+					var userid = getCookie('userid');
+
+					if (getCookie('userid') !== '') {
 						var dataArr = {
-							dealid: dealid,
-							userid: userid,
-							dealprice: covertVNDtoInt(dealprice)
+							dealid: dealid
 						};
 						var dataJS = JSON.stringify(dataArr);
 						$.ajax({
-							url: 'http://localhost:3000/deals/updatedealprice',
+							url: 'http://localhost:3000/deals/dealprice',
 							type: 'POST',
 							dataType: 'json',
 							timeout: 10000,
 							contentType: 'application/json',
 							data: dataJS
 						}).done(function (data) {
-							var time = new Date();
-							var dataArr = {
-								dealid: dealid,
-								dealtime: time,
-								userid: userid,
-								dealprice: covertVNDtoInt(dealprice)
-							};
-							var dataJS = JSON.stringify(dataArr);
-							$.ajax({
-								url: 'http://localhost:3000/deals/insertdealhistory',
-								type: 'POST',
-								dataType: 'json',
-								timeout: 10000,
-								contentType: 'application/json',
-								data: dataJS
-							}).done(function (data) {
-								shownotificationSuccessDeal();
-								socket.emit('deal_pricesuccess', {
-									dealid: dealid
+							if (data[0].giacaonhat >= parseInt(covertVNDtoInt(pricedeal))) {
+								shownotificationHighPrice();
+							} else {
+								var dataArr = {
+									dealid: dealid,
+									userid: userid,
+									dealprice: covertVNDtoInt(dealprice)
+								};
+								var dataJS = JSON.stringify(dataArr);
+								$.ajax({
+									url: 'http://localhost:3000/deals/updatedealprice',
+									type: 'POST',
+									dataType: 'json',
+									timeout: 10000,
+									contentType: 'application/json',
+									data: dataJS
+								}).done(function (data) {
+									var time = new Date();
+									var dataArr = {
+										dealid: dealid,
+										dealtime: time,
+										userid: userid,
+										dealprice: covertVNDtoInt(dealprice)
+									};
+									var dataJS = JSON.stringify(dataArr);
+									$.ajax({
+										url: 'http://localhost:3000/deals/insertdealhistory',
+										type: 'POST',
+										dataType: 'json',
+										timeout: 10000,
+										contentType: 'application/json',
+										data: dataJS
+									}).done(function (data) {
+										shownotificationSuccessDeal();
+										socket.emit('deal_pricesuccess', {
+											dealid: dealid
+										});
+									}).fail(function (xhr, status, err) {
+										console.log(err);
+									});
+									shownotificationSuccessDeal();
+									socket.emit('deal_pricesuccess', {
+										dealid: dealid
+									});
+									socket.emit('deal_updatehistory', {
+										dealid: dealid
+									});
+								}).fail(function (xhr, status, err) {
+									console.log(err);
 								});
-							}).fail(function (xhr, status, err) {
-								console.log(err);
-							});
-							shownotificationSuccessDeal();
-							socket.emit('deal_pricesuccess', {
-								dealid: dealid
-							});
-							socket.emit('deal_updatehistory', {
-								dealid: dealid
-							});
+							}
 						}).fail(function (xhr, status, err) {
 							console.log(err);
 						});
+					} else {
+						shownotificationLogin();
 					}
-				}).fail(function (xhr, status, err) {
-					console.log(err);
-				});
-			} else {
-				shownotificationLogin();
-			}
 
+				} else {
+					shownotificationReview();
+				}
+			}).fail(function (xhr, status, err) {
+				console.log(err);
+			});
 		} else {
-			shownotificationReview();
+			shownotificationKick();
 		}
 	}).fail(function (xhr, status, err) {
 		console.log(err);
@@ -246,7 +270,7 @@ function getProductDetail() {
 		contentType: 'application/json',
 		data: dataJS
 	}).done(function (data) {
-		
+
 		$(document.getElementById('dealid')).val(dealid);
 		$(document.getElementById('purchaserid')).val(getCookie('userid'));
 		$(document.getElementById('SalerName')).text(data[0].tennguoiban);
@@ -290,7 +314,7 @@ function getProductDetail() {
 
 		$(document.getElementById('descrep')).text('');
 		$(document.getElementById('descrep')).append(data[0].mota);
-		
+
 
 		if (new Date().getTime() / 1000 > datetime.getTime() / 1000 || data[0].damua === 0) {
 			$(document.getElementById('btnDeal')).addClass('disabled');
@@ -299,7 +323,13 @@ function getProductDetail() {
 			$(document.getElementById('btnDeal')).text('');
 			$(document.getElementById('btnDeal')).append('&nbsp;&nbsp;<i class="fas fa-gavel"></i>Đã được mua &nbsp;&nbsp;');
 			$(document.getElementById('btnBuyNow')).addClass('disabled');
-		} else {
+		}
+
+		loadInputDealPrice(data[0].giacaonhat, data[0].buocgia);
+
+		getStringOutTime(data[0].thoigianhientai, data[0].thoigianketthuc, 'timeOut');
+
+		if ($(document.getElementById('timeOut')).text() !== 'Hết thời gian') {
 			var objcard = {
 				dealid: String,
 				sid: String,
@@ -311,10 +341,6 @@ function getProductDetail() {
 			updateid.push(objcard);
 		}
 
-		loadInputDealPrice(data[0].giacaonhat, data[0].buocgia);
-
-		getStringOutTime(data[0].thoigianhientai, data[0].thoigianketthuc, 'timeOut');
-		
 	}).fail(function (xhr, status, err) {
 		console.log(err);
 	});
@@ -505,6 +531,16 @@ function hiddennotificationReview() {
 
 function shownotificationReview() {
 	var notificationLogin = document.getElementById('notificationReview');
+	$(notificationLogin).removeClass('d-none');
+}
+
+function hiddennotificationKick() {
+	var notificationLogin = document.getElementById('notificationKick');
+	$(notificationLogin).addClass('d-none');
+}
+
+function shownotificationKick() {
+	var notificationLogin = document.getElementById('notificationKick');
 	$(notificationLogin).removeClass('d-none');
 }
 

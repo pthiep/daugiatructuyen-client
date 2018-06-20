@@ -23,7 +23,336 @@ socket.on('time_ostartupdatetime', function (data) {
 $(document).ready(function () {
 	socket.emit('time_estartupdatetime', '');
 	loadListSearch();
+
+	$('#btnSort').on('click', function () {
+		$(document.getElementById('listSearch')).text('');
+		var sort = $('#sbTime').val();
+		updateid = new Array({
+			dealid: String,
+			sid: String,
+			endtime: Date
+		});
+		if (parseInt(sort) === 1) {
+			loadListSearch();
+		} else if (parseInt(sort) === 2) {
+			loadListSearchasc();
+		}
+	});
+
 });
+
+
+function loadListSearchasc() {
+	var type = getParameter('type', window.location.href);
+	if (type === '1') {
+		var id = getParameter('id', window.location.href);
+		var page = getParameter('page', window.location.href);
+		if (id === 'all') {
+			loadListAllasc(page);
+			loadListAllPage(page);
+		} else {
+			loadListCateasc(id, page);
+			loadListCatePage(id, page);
+		}
+	} else if (type === '2') {
+		var str = getParameter('str', window.location.href);
+		var page = getParameter('page', window.location.href);
+
+		loadListSearchStringasc(decodeURIComponent(str), page);
+		loadListSearchStringPage(decodeURIComponent(str), page);
+	}
+
+	$('#btnSearch').on('click', function () {
+		var str = $(document.getElementById('searchString')).val();
+		if (str === '') {
+			location.href = '../views/search.html?type=1&id=all&page=1';
+		} else {
+			location.href = '../views/search.html?type=2&str=' + str + '&page=1';
+		}
+	});
+}
+
+function loadListAllasc(ln) {
+
+	var line = '';
+
+	if (ln === '1') {
+		line = 1;
+	} else {
+		line = ln * 12 - 11;
+	}
+
+	var dataArr = {
+		line: line
+	};
+
+	var dataJS = JSON.stringify(dataArr);
+	$.ajax({
+		url: 'http://localhost:3000/deals/searchallasc',
+		type: 'POST',
+		dataType: 'json',
+		timeout: 10000,
+		contentType: 'application/json',
+		data: dataJS
+	}).done(function (data) {
+
+		$(document.getElementById('listSearch')).text('');
+
+		var soluongdeal = Object.keys(data).length;
+
+		var soluongdealmoidong = 4;
+
+		var sodong = Math.floor(soluongdeal / soluongdealmoidong) + 1;
+		var sodealdu = soluongdeal % soluongdealmoidong;
+		var sodealdaydu = soluongdealmoidong * sodong;
+		var dem = 1;
+
+		var demdeal = 0;
+		var vt = 0;
+		for (var i = 1; i <= sodong; i++) {
+			$(document.getElementById('listSearch')).append(
+				'<div class="row" id="row_' + i + '">' +
+				'</div>' +
+				'<br>'
+			);
+			for (var j = 0; j < soluongdealmoidong; j++) {
+				var idrow = 'row_' + i;
+				if (vt < soluongdeal) {
+					var btnlike = '';
+					if (getCookie('userid') !== '') {
+						btnlike = '&nbsp;<button type="button" class="btn btn-danger" onclick="likeDeal(' + getCookie('userid') + ',' + data[vt].madaugia + ')"><i class="fas fa-heart"></i></button>';
+					} else {
+						btnlike = '';
+					}
+
+					var iconnew = '';
+					var datetime = new Date(data[0].thoigiandang);
+					if (datetime.getTime() / 1000 - new Date().getTime() / 1000 < 300) {
+						iconnew = '<img src="../img/new.png" height="42" width="42">'
+					}
+
+					$(document.getElementById(idrow)).append(
+						'<div class="col">' +
+						'<div class="card">' +
+						'<img class="card-img-top" src="http://localhost:3000/assets/img/products/' + data[vt].link_img1 + '" alt="">' +
+						'<div class="card-body">' +
+						'<h4 class="card-title text-center">' + data[vt].tensanpham + '</h4>' +
+						'<h5 class="card-text text-center" style="color: red">Giá: ' + covertInttoVND(data[vt].giacaonhat) + '</h5>' +
+						'<h6 class="card-text text-center"><span id=\'time_' + i + '_' + j + '\'></span></h6>' +
+						'</div>' +
+						'<div class="card-footer text-center">' +
+						'<a href="./dealdetail.html?dealid=' + data[vt].madaugia + '">' + iconnew + '<button type="button" class="btn btn-primary">ĐẤU GIÁ NGAY</button></a>' +
+						btnlike +
+						'</div>' +
+						'</div>' +
+						'</div>' +
+						'</div>'
+					);
+					var objcard = {
+						dealid: String,
+						sid: String,
+						endtime: Date
+					};
+					objcard.dealid = data[vt].madaugia;
+					objcard.sid = 'time_' + i + '_' + j;
+					objcard.endtime = data[vt].thoigianketthuc;
+					updateid.push(objcard);
+					vt++;
+				} else {
+					$(document.getElementById(idrow)).append(
+						'<div class="col">' +
+						'</div>'
+					);
+				}
+			}
+		}
+	}).fail(function (xhr, status, err) {
+		console.log(err);
+	});
+}
+
+function loadListSearchStringasc(str, ln) {
+
+	var line = '';
+
+	if (ln === '1') {
+		line = 1;
+	} else {
+		line = ln * 12 - 11;
+	}
+
+	var st = String(str).replace('%20', ' ');
+	var dataArr = {
+		str: st,
+		line: line
+	};
+	var dataJS = JSON.stringify(dataArr);
+	$.ajax({
+		url: 'http://localhost:3000/deals/searchstringasc',
+		type: 'POST',
+		dataType: 'json',
+		timeout: 10000,
+		contentType: 'application/json',
+		data: dataJS
+	}).done(function (data) {
+		$(document.getElementById('listSearch')).text('');
+
+		var soluongdeal = Object.keys(data).length;
+		var soluongdealmoidong = 4;
+
+		var sodong = Math.floor(soluongdeal / soluongdealmoidong) + 1;
+		var sodealdu = soluongdeal % soluongdealmoidong;
+		var sodealdaydu = soluongdealmoidong * sodong;
+
+		var dem = 1;
+
+		var demdeal = 0;
+		var vt = 0;
+		for (var i = 1; i <= sodong; i++) {
+			$(document.getElementById('listSearch')).append(
+				'<div class="row" id="row_' + i + '">' +
+				'</div>' +
+				'<br>'
+			);
+			for (var j = 0; j < soluongdealmoidong; j++) {
+				var idrow = 'row_' + i;
+				if (vt < soluongdeal) {
+					var btnlike = '';
+					if (getCookie('userid') !== '') {
+						btnlike = '&nbsp;<button type="button" class="btn btn-danger" onclick="likeDeal(' + getCookie('userid') + ',' + data[vt].madaugia + ')"><i class="fas fa-heart"></i></button>';
+					} else {
+						btnlike = ''
+					}
+					$(document.getElementById(idrow)).append(
+						'<div class="col">' +
+						'<div class="card">' +
+						'<img class="card-img-top" src="http://localhost:3000/assets/img/products/' + data[vt].link_img1 + '" alt="">' +
+						'<div class="card-body">' +
+						'<h4 class="card-title text-center">' + data[vt].tensanpham + '</h4>' +
+						'<h5 class="card-text text-center" style="color: red">Giá: ' + covertInttoVND(data[vt].giacaonhat) + '</h5>' +
+						'<h6 class="card-text text-center"><span id=\'time_' + i + '_' + j + '\'></span></h6>' +
+						'</div>' +
+						'<div class="card-footer text-center">' +
+						'<a href="./dealdetail.html?dealid=' + data[vt].madaugia + '"><button type="button" class="btn btn-primary">ĐẤU GIÁ NGAY</button></a>' +
+						btnlike +
+						'</div>' +
+						'</div>' +
+						'</div>' +
+						'</div>'
+					);
+					var objcard = {
+						dealid: String,
+						sid: String,
+						endtime: Date
+					};
+					objcard.dealid = data[vt].madaugia;
+					objcard.sid = 'time_' + i + '_' + j;
+					objcard.endtime = data[vt].thoigianketthuc;
+					updateid.push(objcard);
+					vt++;
+				} else {
+					$(document.getElementById(idrow)).append(
+						'<div class="col">' +
+						'</div>'
+					);
+				}
+			}
+		}
+	}).fail(function (xhr, status, err) {
+		console.log(err);
+	});
+}
+
+function loadListCateasc(cateid, ln) {
+
+	var line = '';
+
+	if (ln === '1') {
+		line = 1;
+	} else {
+		line = ln * 12 - 11;
+	}
+
+	var dataArr = {
+		cateid: cateid,
+		line: line
+	};
+	var dataJS = JSON.stringify(dataArr);
+	$.ajax({
+		url: 'http://localhost:3000/deals/searchcateasc',
+		type: 'POST',
+		dataType: 'json',
+		timeout: 10000,
+		contentType: 'application/json',
+		data: dataJS
+	}).done(function (data) {
+		$(document.getElementById('listSearch')).text('');
+
+		var soluongdeal = Object.keys(data).length;
+		var soluongdealmoidong = 4;
+
+		var sodong = Math.floor(soluongdeal / soluongdealmoidong) + 1;
+		var sodealdu = soluongdeal % soluongdealmoidong;
+		var sodealdaydu = soluongdealmoidong * sodong;
+
+		var dem = 1;
+
+		var demdeal = 0;
+		var vt = 0;
+		for (var i = 1; i <= sodong; i++) {
+			$(document.getElementById('listSearch')).append(
+				'<div class="row" id="row_' + i + '">' +
+				'</div>' +
+				'<br>'
+			);
+			for (var j = 0; j < soluongdealmoidong; j++) {
+				var idrow = 'row_' + i;
+				if (vt < soluongdeal) {
+					var btnlike = '';
+					if (getCookie('userid') !== '') {
+						btnlike = '&nbsp;<button type="button" class="btn btn-danger" onclick="likeDeal(' + getCookie('userid') + ',' + data[vt].madaugia + ')"><i class="fas fa-heart"></i></button>';
+					} else {
+						btnlike = ''
+					}
+					$(document.getElementById(idrow)).append(
+						'<div class="col">' +
+						'<div class="card">' +
+						'<img class="card-img-top" src="http://localhost:3000/assets/img/products/' + data[vt].link_img1 + '" alt="">' +
+						'<div class="card-body">' +
+						'<h4 class="card-title text-center">' + data[vt].tensanpham + '</h4>' +
+						'<h5 class="card-text text-center" style="color: red">Giá: ' + covertInttoVND(data[vt].giacaonhat) + '</h5>' +
+						'<h6 class="card-text text-center"><span id=\'time_' + i + '_' + j + '\'></span></h6>' +
+						'</div>' +
+						'<div class="card-footer text-center">' +
+						'<a href="./dealdetail.html?dealid=' + data[vt].madaugia + '"><button type="button" class="btn btn-primary">ĐẤU GIÁ NGAY</button></a>' +
+						btnlike +
+						'</div>' +
+						'</div>' +
+						'</div>' +
+						'</div>'
+					);
+					var objcard = {
+						dealid: String,
+						sid: String,
+						endtime: Date
+					};
+					objcard.dealid = data[vt].madaugia;
+					objcard.sid = 'time_' + i + '_' + j;
+					objcard.endtime = data[vt].thoigianketthuc;
+					updateid.push(objcard);
+					vt++;
+				} else {
+					$(document.getElementById(idrow)).append(
+						'<div class="col">' +
+						'</div>'
+					);
+				}
+			}
+		}
+	}).fail(function (xhr, status, err) {
+		console.log(err);
+	});
+}
 
 function loadListSearch() {
 	var type = getParameter('type', window.location.href);
@@ -40,7 +369,7 @@ function loadListSearch() {
 	} else if (type === '2') {
 		var str = getParameter('str', window.location.href);
 		var page = getParameter('page', window.location.href);
-		
+
 		loadListSearchString(decodeURIComponent(str), page);
 		loadListSearchStringPage(decodeURIComponent(str), page);
 	}
@@ -320,6 +649,7 @@ function loadListAll(ln) {
 		contentType: 'application/json',
 		data: dataJS
 	}).done(function (data) {
+
 		$(document.getElementById('listSearch')).text('');
 
 		var soluongdeal = Object.keys(data).length;
@@ -348,6 +678,13 @@ function loadListAll(ln) {
 					} else {
 						btnlike = '';
 					}
+
+					var iconnew = '';
+					var datetime = new Date(data[vt].thoigiandang);
+					if ((Math.floor(new Date().getTime() / 1000) + 25500  - datetime.getTime() / 1000) < 800) {	
+						iconnew = '<img src="../img/new.png" height="35" width="35">'
+					}
+
 					$(document.getElementById(idrow)).append(
 						'<div class="col">' +
 						'<div class="card">' +
@@ -358,7 +695,7 @@ function loadListAll(ln) {
 						'<h6 class="card-text text-center"><span id=\'time_' + i + '_' + j + '\'></span></h6>' +
 						'</div>' +
 						'<div class="card-footer text-center">' +
-						'<a href="./dealdetail.html?dealid=' + data[vt].madaugia + '"><button type="button" class="btn btn-primary">ĐẤU GIÁ NGAY</button></a>' +
+						'<a href="./dealdetail.html?dealid=' + data[vt].madaugia + '">' + iconnew + '<button type="button" class="btn btn-primary">ĐẤU GIÁ NGAY</button></a>' +
 						btnlike +
 						'</div>' +
 						'</div>' +
@@ -486,7 +823,6 @@ function likeDeal(userid, dealid) {
 	};
 
 	var dataJS = JSON.stringify(dataArr);
-	console.log(dataJS);
 	$.ajax({
 		url: 'http://localhost:3000/deals/checklikedeal',
 		type: 'POST',
@@ -495,7 +831,6 @@ function likeDeal(userid, dealid) {
 		contentType: 'application/json',
 		data: dataJS
 	}).done(function (data) {
-		console.log(Object.keys(data).length);
 		if (Object.keys(data).length === 0) {
 			$('#successAddLikeModal').modal('show');
 

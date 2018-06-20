@@ -241,7 +241,7 @@ function loadListReview() {
 		contentType: 'application/json',
 		data: dataJS
 	}).done(function (data) {
-		if (Object.keys(data).length === 0 && data.constructor === Object) {
+		if (Object.keys(data).length === 0) {
 			$(document.getElementById('reviewGood')).text('Chưa có đánh giá');
 			$(document.getElementById('sumReview')).text('Chưa có đánh giá');
 		} else {
@@ -264,12 +264,12 @@ function loadListReview() {
 				$(document.getElementById('listReview')).text('');
 				data.forEach(element => {
 					var tt = '';
-					if (element.trangthai === 0){
+					if (element.trangthai === 0) {
 						tt = '+1';
 					} else {
 						tt = '-1';
 					}
-						
+
 					$(document.getElementById('listReview')).append(
 						'<tr>' +
 						'<td><a href="#">' + element.tennguoidung + '</a></td>' +
@@ -289,11 +289,11 @@ function loadListReview() {
 	});
 }
 
-function loadListDealing(){
+function loadListDealing() {
 	var dataArr = {
 		userid: getCookie('userid')
 	};
-	
+
 	var dataJS = JSON.stringify(dataArr);
 	$.ajax({
 		url: 'http://localhost:3000/users/getlistdealing',
@@ -304,24 +304,24 @@ function loadListDealing(){
 		data: dataJS
 	}).done(function (data) {
 		$(document.getElementById('listDealing')).text('');
-				data.forEach(element => {						
-					$(document.getElementById('listDealing')).append(
-						'<tr>' +
-						'<td>' + element.madaugia + '</td>' +
-						'<td><a href="#">' + element.tensanpham + '</a></td>' +
-						'</tr'
-					);
-				});
+		data.forEach(element => {
+			$(document.getElementById('listDealing')).append(
+				'<tr>' +
+				'<td>' + element.madaugia + '</td>' +
+				'<td><a href="../views/dealdetail.html?dealid=' + element.madaugia + '">' + element.tensanpham + '</a></td>' +
+				'</tr'
+			);
+		});
 	}).fail(function (xhr, status, err) {
 		console.log(err);
 	});
 }
 
-function loadListDealWin(){
+function loadListDealWin() {
 	var dataArr = {
 		userid: getCookie('userid')
 	};
-	
+
 	var dataJS = JSON.stringify(dataArr);
 	$.ajax({
 		url: 'http://localhost:3000/users/getlistdealwin',
@@ -332,14 +332,14 @@ function loadListDealWin(){
 		data: dataJS
 	}).done(function (data) {
 		$(document.getElementById('listDealWin')).text('');
-				data.forEach(element => {						
-					$(document.getElementById('listDealWin')).append(
-						'<tr>' +
-						'<td>' + element.madaugia + '</td>' +
-						'<td><a href="#">' + element.tensanpham + '</a></td>' +
-						'</tr'
-					);
-				});
+		data.forEach(element => {
+			$(document.getElementById('listDealWin')).append(
+				'<tr>' +
+				'<td>' + element.madaugia + '</td>' +
+				'<td><a href="../views/dealdetail.html?dealid=' + element.madaugia + '">' + element.tensanpham + '</a></td>' +
+				'</tr'
+			);
+		});
 	}).fail(function (xhr, status, err) {
 		console.log(err);
 	});
@@ -383,7 +383,7 @@ function loadListLikeProduct() {
 						data[0].tensanpham +
 						'</a></td>' +
 						'<td>' +
-						'<button type=\"button\" id=\"btnDelLikeProduct_ ' + data[0].masanpham + '\" onclick="deleteLikeProduct('+ getCookie('userid') +', '+ data[0].masanpham +')" class=\"btn btn-danger\">Xóa</button>' +
+						'<button type=\"button\" id=\"btnDelLikeProduct_ ' + data[0].masanpham + '\" onclick="deleteLikeProduct(' + getCookie('userid') + ', ' + data[0].masanpham + ')" class=\"btn btn-danger\">Xóa</button>' +
 						'</td>' +
 						'</tr>');
 					$("#likeProductTable > tbody").append(row);
@@ -399,12 +399,12 @@ function loadListLikeProduct() {
 		});
 }
 
-function deleteLikeProduct(userid, dealid){
+function deleteLikeProduct(userid, dealid) {
 	var dataArr = {
 		userid: userid,
 		dealid: dealid
 	};
-	
+
 	var dataJS = JSON.stringify(dataArr);
 	$.ajax({
 		url: 'http://localhost:3000/users/deletelikeproduct',

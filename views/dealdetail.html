@@ -20,7 +20,7 @@
 	<link href="../css/heroic-features.css" rel="stylesheet">
 	<link href="../css/productdetail.css" rel="stylesheet">
 
-
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 
 	<!-- Custom js -->
 	<script language="javascript" src="../vendor/socket.io/socket.io.js"></script>
@@ -31,6 +31,7 @@
 	<script language="javascript" src="../js/category.js"></script>
 	<script language="javascript" src="../js/md5.min.js"></script>
 	<script language="javascript" src="../js/search.js"></script>
+	<script language="javascript" src="../js/auth.js"></script>
 
 </head>
 
@@ -206,6 +207,9 @@
 						<div class="d-none alert alert-danger" role="alert" id="notificationReview">
 							Đánh giá của bạn không đủ để ra giá
 						</div>
+						<div class="d-none alert alert-danger" role="alert" id="notificationKick">
+							Bạn đã bị kick khỏi đấu giá
+						</div>
 
 						<div class="row">
 							<div class="col-sm-6">
@@ -340,6 +344,73 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal" id="btncloseLogin">Đóng</button>
 					<button type="submit" class="btn btn-primary" id="btnLogin">Đăng nhập</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Modal register -->
+
+	<div class="modal fade" id="signupModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4>Đăng Ký</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body" style="padding:40px 50px;">
+					<form role="form">
+						<div class="form-group">
+							<label for="email">
+								<span class="glyphicon glyphicon-user"></span> Email</label>
+							<input type="email" class="form-control" id="email" placeholder="Nhập email đăng ký" required>
+						</div>
+						<div class="form-group">
+							<label for="name">
+								<span class="glyphicon glyphicon-user"></span> Họ tên</label>
+							<input type="text" class="form-control" id="name" placeholder="Nhập họ và tên" required>
+						</div>
+						<div class="form-group">
+							<label for="pwd">
+								<span class="glyphicon glyphicon-eye-open"></span>Mật khẩu</label>
+							<input type="password" class="form-control" id="pwd" placeholder="Nhập mật khẩu">
+						</div>
+						<div class="form-group">
+							<label for="repwd">
+								<span class="glyphicon glyphicon-eye-open"></span>Nhập lại mật khẩu</label>
+							<input type="password" class="form-control" id="repwd" placeholder="Nhập mật khẩu">
+						</div>
+						<div class="g-recaptcha" data-sitekey="6Ldy718UAAAAABMIbS1Sbh_n_3trwSB1oIWzzfP7"></div>
+						<br>
+						<button type="submit" class="btn btn-success btn-block" id="submitSignup">
+							<span class="glyphicon glyphicon-off"></span>Đăng ký</button>
+						<br>
+						<div class="alert alert-danger" id="signup-alert" hidden></div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="modal fade" id="XacnhanModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="XacnhanModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="XacnhanModalCenterTitle">Thông báo</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					Bạn có chắc chắc muốn đấu giá ?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+					<button type="button" onclick="Deal()" class="btn btn-primary">Đấu giá</button>
 				</div>
 			</div>
 		</div>

@@ -21,6 +21,7 @@
 	<link href="../css/productdetail.css" rel="stylesheet">
 
 
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 
 	<!-- Custom js -->
 	<script language="javascript" src="../vendor/socket.io/socket.io.js"></script>
@@ -112,7 +113,18 @@
 		<!-- !!!!  -->
 
 		<!-- Page Features -->
-
+		<div class="form-row">
+			<div class="col">
+				<select class="form-control" id="sbTime">
+					<option value="1">Thời gian kết thúc giảm dần</option>
+					<option value="2">Thời gian kết thúc tăng dần</option>
+				</select>
+			</div>
+			<div class="col">
+				<button type="button" class="btn btn-primary" id="btnSort">Sắp xếp</button>
+			</div>
+		</div>
+		<br>
 		<div id="listSearch"></div>
 
 		<nav aria-label="Page navigation example">
@@ -253,6 +265,8 @@
 								<span class="glyphicon glyphicon-eye-open"></span>Nhập lại mật khẩu</label>
 							<input type="password" class="form-control" id="repwd" placeholder="Nhập mật khẩu">
 						</div>
+						<div class="g-recaptcha" data-sitekey="6Ldy718UAAAAABMIbS1Sbh_n_3trwSB1oIWzzfP7"></div>
+						<br>
 						<button type="submit" class="btn btn-success btn-block" id="submitSignup">
 							<span class="glyphicon glyphicon-off"></span>Đăng ký</button>
 						<br>
@@ -275,7 +289,8 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					Bạn không có quyền bán hàng.<br>
+					Bạn không có quyền bán hàng.
+					<br>
 					<span id="regSale"></span>
 				</div>
 				<div class="modal-footer">

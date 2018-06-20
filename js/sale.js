@@ -289,6 +289,7 @@ function kickUser(userid, dealid, gia) {
 	}).done(function (data) {
 		if (gia === data[0].giacaonhat) {
 			// cap nhat gia max + id
+			
 			$.ajax({
 				url: 'http://localhost:3000/deals/dealhistory',
 				type: 'POST',
@@ -297,10 +298,11 @@ function kickUser(userid, dealid, gia) {
 				contentType: 'application/json',
 				data: dataJS
 			}).done(function (data) {
-				// data[1]. 				
+				console.log(data);
+				
 				var dataArr = {
-					userid: data[1].manguoidung,
-					dealprice: data[1].giadaugia,
+					userid: data[0].manguoidung,
+					dealprice: data[0].giadaugia,
 					dealid: dealid
 				};
 
