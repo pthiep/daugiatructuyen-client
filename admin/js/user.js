@@ -44,9 +44,12 @@ function loadListUser() {
 
 function resetPass(userid) {
 
+	var pass = Math.random().toString(36).slice(-8);
+
 	var dataArr = {
 		userid: userid,
-		pass: md5('000000')
+		pass: md5(pass),
+		passnot: pass
 	};
 	
 	var dataJS = JSON.stringify(dataArr);

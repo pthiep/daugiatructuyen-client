@@ -23,7 +23,6 @@ var postRegister = () => {
 				name
 			}
 		}).done(res => {
-			console.log(res);
 			if(res.msg === 'OK'){
 				$('#signupModal').hide();
 				$('#successRegModal').modal('show');

@@ -258,7 +258,7 @@ function loadModalLichsu(dealid) {
 			$(document.getElementById('listHistoryEdit')).append(
 				'<tr>' +
 				'<td style="min-width: 250px;">' + element.tennguoidung + '</td>' +
-				'<td>' + element.giadaugia + '</td>' +
+				'<td>' + covertInttoVND(element.giadaugia) + '</td>' +
 				'<td>' + time + '</td>' +
 				'<td>' + btnKick + '</td>' +
 				'</tr>'
@@ -440,7 +440,7 @@ function loadListDealing() {
 					'<tr>' +
 					'<td>' + element.madaugia + '</td>' +
 					'<td><a href="dealdetail.html?dealid=' + element.madaugia + '">' + element.tensanpham + '</a></td>' +
-					'<td>' + element.giacaonhat + '</td>' +
+					'<td>' + covertInttoVND(element.giacaonhat) + '</td>' +
 					'<td>' + time + '</td>' +
 					'</tr>'
 				);
@@ -508,7 +508,7 @@ function loadListDealTimeOut() {
 						'<td>' + element.madaugia + '</td>' +
 						'<td><a href="dealdetail.html?dealid=' + element.madaugia + '">' + element.tensanpham + '</a></td>' +
 						'<td>' + namepur + '</td>' +
-						'<td>' + element.giacaonhat + '</td>' +
+						'<td>' + covertInttoVND(element.giacaonhat) + '</td>' +
 						'<td>' + sta + '</td>' +
 						'<td>' + btnDG + '</td>' +
 						'</tr>'
@@ -639,4 +639,37 @@ function coverDateTime(dt, check) {
 	}
 
 	return arrdate[2] + '-' + arrdate[0] + '-' + arrdate[1] + ' ' + h + ':' + arrtime[1] + ':00';
+}
+
+
+function covertInttoVND(num) {
+	var kq = '';
+	var temp = String(num);
+
+	if (temp.length > 3) {
+		var sll = 0;
+
+		if (temp.length % 3 === 0) {
+			sll = Math.floor(temp.length / 3);
+		} else {
+			sll = Math.floor(temp.length / 3) + 1;
+		}
+
+		for (var i = 0; i < sll; i++) {
+			if (temp.length > 3) {
+				kq = temp.substr(temp.length - 3, 3) + kq;
+				temp = temp.substr(0, temp.length - 3);
+
+				kq = ',' + kq;
+			} else {
+				kq = temp + kq;
+			}
+		}
+	} else {
+		kq = temp;
+	}
+
+	kq += ' VND';
+
+	return kq;
 }

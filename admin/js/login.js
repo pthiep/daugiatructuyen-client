@@ -19,7 +19,6 @@ function Login() {
 		};
 
 		var dataJS = JSON.stringify(dataArr);
-		console.log(dataJS);
 		$.ajax({
 			url: 'http://localhost:3000/users/checkuseradmin',
 			type: 'POST',
@@ -28,7 +27,6 @@ function Login() {
 			contentType: 'application/json',
 			data: dataJS
 		}).done(function (data) {
-			console.log(data);
 			if (data.checkuser === true && data.islogin === false) {
 				updateLoginStatus(data.userid, 0);
 				var dataArr = {

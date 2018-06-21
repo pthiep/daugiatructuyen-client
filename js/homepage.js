@@ -203,7 +203,6 @@ function likeDeal(userid, dealid) {
 		contentType: 'application/json',
 		data: dataJS
 	}).done(function (data) {
-		console.log(Object.keys(data).length);
 		if (Object.keys(data).length === 0) {
 			$('#successAddLikeModal').modal('show');
 

@@ -107,7 +107,6 @@ function logoutUser() {
 }
 
 function checkRuleSale() {
-	console.log('O');
 	var dataArr = {
 		userid: getCookie('userid')
 	};
@@ -137,7 +136,6 @@ function checkRuleSale() {
 				contentType: 'application/json',
 				data: dataJS
 			}).done(function (data) {
-				console.log(data);
 				$(document.getElementById('regSale')).text('');
 				if (Object.keys(data).length !== 0){
 					$(document.getElementById('regSale')).append(
